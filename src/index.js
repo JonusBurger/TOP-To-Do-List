@@ -1,6 +1,6 @@
-import note from "./note";
+import Note from "./note";
 
-const newNote = new note("Jo", "das ist ein Text");
+const newNote = new Note("Jo", "das ist ein Text");
 console.log(newNote.getDate());
 console.log(newNote.getTitle());
 console.log(newNote.getDescription());

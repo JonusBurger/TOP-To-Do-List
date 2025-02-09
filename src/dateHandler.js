@@ -1,21 +1,23 @@
 import { format, isDate, isFuture, isPast} from "date-fns"
 
+const DATEFORMAT = "dd/MM/yyyy";
+
 export default function dateHandler() {
-    const dateFormat = "dd/MM/yyyy";
-// getDate
+    
+    // getDate
 
-// setDate
+    // setDate
 
-// getToday
-function getToday() {
-    let today = new Date();
-    today = format(today, dateFormat);
-    return today;
-}
+    // getToday
+    function getToday() {
+        let today = new Date();
+        today = format(today, DATEFORMAT);
+        return today;
+    }
 
-// validateDate
+    // validateDate
 
-// checkOverdueDate
+    // checkOverdueDate
 
-return { getToday }
+    return { getToday }
 }

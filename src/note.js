@@ -1,11 +1,14 @@
 import dateHandler from "./dateHandler"
 
-export default class note {
+const dateHandlerInstance = dateHandler(); // Call the function to get the object
+
+
+export default class Note {
     // Properties
     constructor(title, description, date = undefined) {
         this.title = title;
         this.description = description;
-        this.date = date // ? date : dateHandler.getToday();
+        this.date = date ? date : dateHandlerInstance.getToday();
       }
 
     // Methods
