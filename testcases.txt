@@ -25,6 +25,7 @@ newProject.addToDo(newToDo2);
 newProject.addToDo(newToDo3);
 console.log(newProject.numberOfToDos);
 
+// Test Sorting Function
 newProject.sortToDos();
 
 
@@ -32,3 +33,10 @@ newProject.toDos.forEach(function(toDo) {
     console.log(toDo.title);
     console.log(toDo.getDateFormated())
 })
+
+
+// Test Closing Mechanism for Project & counting of Done States
+newProject.getToDos.forEach(function(toDo) {toDo.changeDoneState()})
+console.log(newProject.countNumberOfToDosDone());
+
+newProject.finishProject();

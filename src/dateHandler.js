@@ -4,12 +4,9 @@ const DATEFORMAT = "dd/MM/yyyy";
 
 export default function dateHandler() {
     // getDate
-    function formatDate(date, DATEFORMAT) {
+    function formatDate(date) {
         if (date) {
-            let formatedDate = new Date(`${date}`);
-            console.log(date.getYear())
-            console.log(Object.getPrototypeOf(date))
-            formatedDate = format(date, DATEFORMAT)
+            const formatedDate = format(date, DATEFORMAT)
             return formatedDate
         }
         return undefined

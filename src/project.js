@@ -47,6 +47,10 @@ export default class Project {
         return numberOfToDosDone
     }
 
+    get getToDos() {
+        return this.toDos
+    }
+
     addToDo(toDo) {
         this.toDos.push(toDo);
         this.updateNumberOfToDos();
@@ -66,9 +70,11 @@ export default class Project {
 
     finishProject() {
         if ((this.countNumberOfToDosDone() == this.numberOfToDos) && !this.done) {
+            console.log("Project finished!");
             this.done = true;
         } else {
             this.done = false;
+            console.log("Project open!");
         }
     }
 }
