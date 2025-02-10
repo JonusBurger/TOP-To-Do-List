@@ -23,4 +23,8 @@ export default class Note {
     get getDate() {
         return this.date
     }
+
+    getDateFormated() {
+        return dateHandlerInstance.formatDate(this.date)
+    }
 }

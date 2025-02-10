@@ -45,6 +45,10 @@ export default class ToDo {
         return this.date
     }
 
+    getDateFormated() {
+        return dateHandlerInstance.formatDate(this.date)
+    }
+
     set setDate(newDate) {
         this.date = dateHandlerInstance.setDate(newDate);
     }

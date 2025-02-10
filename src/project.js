@@ -4,7 +4,7 @@ const dateHandlerInstance = dateHandler(); // Call the function to get the objec
 
 export default class Project {
 
-    constructor(title, date = undefined, toDos = [], done = false, color = undefined) {
+    constructor(title, date = undefined, toDos = [], done = false) {
         this.title = title;
         this.date = date;
         this.toDos = toDos;
@@ -23,6 +23,10 @@ export default class Project {
 
     get getDate() {
         return this.date
+    }
+
+    getDateFormated() {
+        return dateHandlerInstance.formatDate(this.date)
     }
 
     set setDate(newDate) {
