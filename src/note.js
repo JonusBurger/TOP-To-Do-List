@@ -12,15 +12,15 @@ export default class Note {
       }
 
     // Methods
-    getTitle() {
+    get getTitle() {
         return this.title
     }
 
-    getDescription() {
+    get getDescription() {
         return this.description
     }
 
-    getDate() {
+    get getDate() {
         return this.date
     }
 }

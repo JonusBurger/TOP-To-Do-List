@@ -1,12 +1,16 @@
-import { format, isDate, isFuture, isPast} from "date-fns"
+import { format, isDate, isFuture, isPast, compareAsc } from "date-fns"
 
 const DATEFORMAT = "dd/MM/yyyy";
 
 export default function dateHandler() {
-    
     // getDate
 
     // setDate
+    function setDate(date) {
+        let targetDate = new Date(date);
+        targetDate = format(targetDate, DATEFORMAT);
+        return targetDate
+    }
 
     // getToday
     function getToday() {
@@ -15,9 +19,14 @@ export default function dateHandler() {
         return today;
     }
 
+    // compareDates
+    function compareDates(date1, date2) {
+        return compareAsc(date1, date2)
+    }
+
     // validateDate
 
     // checkOverdueDate
 
-    return { getToday }
+    return { getToday, setDate, compareDates }
 }

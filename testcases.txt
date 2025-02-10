@@ -1,7 +1,3 @@
-import Note from "./note";
-import ToDo from "./to-do";
-import Project from "./project";
-
 const newNote = new Note("Jo", "das ist ein Text");
 console.log(newNote.getDate);
 console.log(newNote.getTitle);
