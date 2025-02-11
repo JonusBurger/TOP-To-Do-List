@@ -31,12 +31,6 @@ const userData = new UserInfo();
 userData.addProject(newProject);
 userData.addProject(newProject2);
 
-console.log(userData.getProjects);
-console.log(userData.getAllToDos());
-
-console.log(newProject.id);
-console.log(newProject2.id);
-
 
 userData.removeProject(newProject.id);
 console.log(userData.getProjects);
