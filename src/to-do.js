@@ -6,13 +6,14 @@ const PRORITYOPTIONS = ["low", "medium", "high"]; // List of available priority 
 export default class ToDo {
     
     // Properties
-    constructor(title, description, priority = "medium", date = undefined, notes = []) {
+    constructor(title, description, priority = "medium", date = undefined, done = false, notes = [], id = undefined) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.date = date ? dateHandlerInstance.setDate(date) : date;
-        this.done = false;
+        this.done = done;
         this.notes = notes; 
+        this.id =  id ? id : Date.now();
       }
 
     get getTitle() {
@@ -20,7 +21,9 @@ export default class ToDo {
     }  
 
     set setTitle(newTitle) {
-        this.title = newTitle;
+        if (!this.done) {
+            this.title = newTitle;
+        }
     }
 
     get getDescription() {
@@ -28,7 +31,9 @@ export default class ToDo {
     }
 
     set setDescription(newDescription) {
-        this.description = newDescription;
+        if (!this.done) {
+            this.description = newDescription;
+        }
     }
 
     get getPriority() {
@@ -36,7 +41,7 @@ export default class ToDo {
     }
 
     set setPriority(newPriority) {
-        if (newPriority in PRORITYOPTIONS) {
+        if (newPriority in PRORITYOPTIONS && !this.done) {
             this.priority = newPriority;
         }
     }
@@ -50,7 +55,10 @@ export default class ToDo {
     }
 
     set setDate(newDate) {
-        this.date = dateHandlerInstance.setDate(newDate);
+        if (!this.done) {
+            this.date = dateHandlerInstance.setDate(newDate);
+        }
+        
     }
 
     get getNotes() {
@@ -58,7 +66,9 @@ export default class ToDo {
     }
 
     addNote(note) {
-        this.notes.push(note)
+        if (!this.done) {
+            this.notes.push(note);
+        }
     }
 
     changeDoneState() {

@@ -40,3 +40,20 @@ newProject.getToDos.forEach(function(toDo) {toDo.changeDoneState()})
 console.log(newProject.countNumberOfToDosDone());
 
 newProject.finishProject();
+
+
+// Test UserInfo
+const newProject2 = new Project("Testprojekt Number 2");
+newProject2.addToDo(newToDo4);
+newProject2.addToDo(newToDo5);
+newProject2.addToDo(newToDo6);
+
+const userData = new UserInfo();
+userData.addProject(newProject);
+userData.addProject(newProject2);
+
+console.log(userData.getProjects);
+console.log(userData.getAllToDos());
+
+userData.removeProject(newProject.id);
+console.log(userData.getProjects);

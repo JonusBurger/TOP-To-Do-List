@@ -4,13 +4,14 @@ const dateHandlerInstance = dateHandler(); // Call the function to get the objec
 
 export default class Project {
 
-    constructor(title, date = undefined, toDos = [], done = false) {
+    constructor(title, date = undefined, toDos = [], done = false, id = undefined) {
         this.title = title;
         this.date = date;
         this.toDos = toDos;
         this.color = undefined;
         this.numberOfToDos = this.toDos.length;
         this.done = done;
+        this.id = id ? id : Date.now();
     }
 
     get getTitle() {
@@ -18,7 +19,10 @@ export default class Project {
     }  
 
     set setTitle(newTitle) {
-        this.title = newTitle;
+        if (!this.done) {
+            this.title = newTitle;
+        }
+        
     }
 
     get getDate() {
@@ -30,7 +34,9 @@ export default class Project {
     }
 
     set setDate(newDate) {
-        this.date = dateHandlerInstance.setDate(newDate);
+        if (!this.done) {
+            this.date = dateHandlerInstance.setDate(newDate);
+        }
     }
 
     updateNumberOfToDos() {
@@ -52,8 +58,10 @@ export default class Project {
     }
 
     addToDo(toDo) {
-        this.toDos.push(toDo);
-        this.updateNumberOfToDos();
+        if (!this.done) {
+            this.toDos.push(toDo);
+            this.updateNumberOfToDos();
+        }
     }
 
     sortToDos() {
@@ -66,6 +74,10 @@ export default class Project {
             }
             return dateHandlerInstance.compareDates(a.date, b.date);
         })
+    }
+
+    removeToDo(toDoId) {
+        this.toDos = this.toDos.filter(toDo => !(toDo.id == toDoId));
     }
 
     finishProject() {
