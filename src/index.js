@@ -1,3 +1,5 @@
+import "./style.css";
+
 import Note from "./note";
 import ToDo from "./to-do";
 import Project from "./project";
