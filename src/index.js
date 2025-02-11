@@ -32,7 +32,3 @@ userData.addProject(newProject);
 userData.addProject(newProject2);
 
 
-userData.removeProject(newProject.id);
-console.log(userData.getProjects);
-
-
