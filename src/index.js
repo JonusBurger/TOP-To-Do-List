@@ -35,5 +35,4 @@ userData.addProject(newProject2);
 userData.removeProject(newProject.id);
 console.log(userData.getProjects);
 
-// Next Step implement functioning removal / ID Logic
 

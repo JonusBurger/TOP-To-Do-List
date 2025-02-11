@@ -1,4 +1,5 @@
 import dateHandler from "./dateHandler"
+import {v4 as uuidv4} from 'uuid';
 
 const dateHandlerInstance = dateHandler(); // Call the function to get the object
 const PRORITYOPTIONS = ["low", "medium", "high"]; // List of available priority options
@@ -13,7 +14,7 @@ export default class ToDo {
         this.date = date ? dateHandlerInstance.setDate(date) : date;
         this.done = done;
         this.notes = notes; 
-        this.id =  id ? id : Date.now();
+        this.id =  id ? id : uuidv4();
       }
 
     get getTitle() {
