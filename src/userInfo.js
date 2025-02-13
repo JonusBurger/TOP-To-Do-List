@@ -48,6 +48,12 @@ export default class UserInfo {
         return overDueToDos
     }
 
+    getAllToDosNotOverdue() {
+        const allToDos = this.getAllToDos();
+        const overDueToDos = this.getAllOverDueToDos();
+        return allToDos.filter(toDo => !overDueToDos.includes(toDo))
+    }
+
     removeProject(projectId) {
         this.projects = this.projects.filter(project => !(project.id == projectId));
     }

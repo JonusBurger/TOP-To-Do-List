@@ -78,6 +78,12 @@ header {
 
 }
 
+.sidebarItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
 #mainArea {
     padding: 0 30px;
 }
@@ -87,10 +93,28 @@ header {
     flex-direction: column;
 }
 
+.mainHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .firstLine {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.lineElement {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.toDoContent {
+    display:flex;
+    flex-direction: row;
+    gap: 20px;
 }
 
 footer {
@@ -101,6 +125,7 @@ footer {
 }
 
 
-.datumHeader {
+.datumHeader, .headerText {
     font-weight:700;
+    font-size: 2rem;
 }

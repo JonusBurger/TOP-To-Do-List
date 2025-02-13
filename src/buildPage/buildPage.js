@@ -1,3 +1,7 @@
+import dateHandler from "../dateHandler"
+
+const dateHandlerInstance = dateHandler(); // Call the function to get the object
+
 export default function buildPage() {
     // buildPage
 
@@ -7,6 +11,7 @@ export default function buildPage() {
     function clearArea() {
         mainArea.replaceChildren();
     }
+
     // create MainHeader
     function createMainHeader(title) {
         const mainHeader = document.createElement("div");
@@ -17,32 +22,37 @@ export default function buildPage() {
         const btnElement = document.createElement("button");
         btnElement.innerText = "Add To-Do";
         mainHeader.appendChild(btnElement);
+        mainHeader.classList.add("mainHeader")
         mainArea.appendChild(mainHeader);
 
     }
+
     // create Header
     function createDateHeader(date) {
-        const dateHeader = document.createElement(div);
+        const dateHeader = document.createElement("div");
         dateHeader.classList.add("datumHeader");
-        dateHeader.innerText = date;
+        dateHeader.innerText = dateHandlerInstance.formatDate(date);
         mainArea.appendChild(dateHeader);    
     }
+
     // append ToDo
     function appendToDo(toDo, isOverDue = false) {
         const lineElement = document.createElement("div");
         const toDoTitle = document.createElement("div");
+        const toDoContent = document.createElement("div");
 
         toDoTitle.innerText = toDo.getTitle;
         toDoTitle.classList.add("toDoTitle");
-        const toDoDate = document.createElement("div");
-        toDoDate.innerText = toDo.getDate;
-        toDoDate.classList.add("toDoDate");
-        if (isOverDue) {
-            toDoDate.classList.add("overDue");
-        }
-        const toDoContent = document.createElement("div");
         toDoContent.appendChild(toDoTitle);
-        toDoContent.appendChild(toDoDate);
+        toDoContent.classList.add("toDoContent")
+
+        if (isOverDue) {
+            const toDoDate = document.createElement("div");
+            toDoDate.innerText = dateHandlerInstance.formatDate(toDo.getDate);
+            toDoDate.classList.add("toDoDate");
+            toDoDate.classList.add("overDue");
+            toDoContent.appendChild(toDoDate);
+        }
 
         const btnDone = document.createElement("button");
         btnDone.classList.add("btnDone");
@@ -52,7 +62,18 @@ export default function buildPage() {
         lineElement.classList.add("lineElement");
         mainArea.appendChild(lineElement);
     }
+
+    function createDateSortedToDos(toDos) {
+        let date;
+        for (let toDo of toDos) {
+            if (date != toDo.getDate) {
+                createDateHeader(toDo.getDate);
+                date = toDo.getDate;
+            }
+            appendToDo(toDo);
+        }
+    }
     
-    return { clearArea, createMainHeader, createDateHeader, appendToDo }
+    return { clearArea, createMainHeader, createDateHeader, appendToDo, createDateSortedToDos }
 }
 
