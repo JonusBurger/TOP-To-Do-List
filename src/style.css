@@ -62,13 +62,45 @@ header, footer {
 header {
     top: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 100vw;
 }
 
 .mainGrid {
     margin-top: 40px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: minmax(150px, 250px) minmax(500px, 1fr);
+    grid-template-rows:calc(100vh - 2*40px);
+}
+
+.columnGrid {
+
+}
+
+#mainArea {
+    padding: 0 30px;
+}
+
+.contentArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.firstLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 footer {
     bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+
+.datumHeader {
+    font-weight:700;
 }

@@ -5,6 +5,7 @@ import ToDo from "./to-do";
 import Project from "./project";
 import dateHandler from "./dateHandler"
 import UserInfo from "./userInfo"
+import buildHomePage from "./buildPage/buildHomepage";
 
 const dateHandlerInstance = dateHandler(); // Call the function to get the object
 
@@ -21,7 +22,7 @@ newProject.addToDo(newToDo2);
 newProject.addToDo(newToDo3);
 
 const newToDo4 = new ToDo("Platz 3", "textCase", "medium", "2019-08-18");
-const newToDo5 = new ToDo("Platz 6", "testTcass111", "low", "2022-08-18");
+const newToDo5 = new ToDo("Platz 6", "testTcass111", "low", "2025-08-18");
 const newToDo6 = new ToDo("Platz 5", "dasistEinTest!", "high", "2021-08-18");
 
 const newProject2 = new Project("Testprojekt Number 2");
@@ -32,5 +33,9 @@ newProject2.addToDo(newToDo6);
 const userData = new UserInfo();
 userData.addProject(newProject);
 userData.addProject(newProject2);
+
+console.log(userData.getAllOverDueToDos());
+
+buildHomePage(userData);
 
 

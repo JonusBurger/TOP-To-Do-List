@@ -81,6 +81,13 @@ export default class Project {
         this.toDos = this.toDos.filter(toDo => !(toDo.id == toDoId));
     }
 
+    getOverDueToDos() {
+        this.sortToDos();
+        let overDueToDos;
+        overDueToDos = this.toDos.filter(toDo => (dateHandlerInstance.validateDate(toDo.getDate)));
+        return overDueToDos
+    }
+
     finishProject() {
         if ((this.countNumberOfToDosDone() == this.numberOfToDos) && !this.done) {
             console.log("Project finished!");

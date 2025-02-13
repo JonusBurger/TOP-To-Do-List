@@ -31,6 +31,8 @@ export default function dateHandler() {
     // validateDate
 
     // checkOverdueDate
-
-    return { getToday, setDate, compareDates, formatDate }
+    function validateDate(date) {
+        return isPast(new Date(date))
+    }
+    return { getToday, setDate, compareDates, formatDate, validateDate }
 }

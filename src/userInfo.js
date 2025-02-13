@@ -38,7 +38,19 @@ export default class UserInfo {
         return toDos
     }
 
+    getAllOverDueToDos() {
+        const overDueToDos = []
+        const projects = this.projects;
+        for (let project of projects) {
+            overDueToDos.push.apply(overDueToDos, project.getOverDueToDos())
+        }
+        this.sortBasedOnDate(overDueToDos)
+        return overDueToDos
+    }
+
     removeProject(projectId) {
         this.projects = this.projects.filter(project => !(project.id == projectId));
     }
+
+
 }
