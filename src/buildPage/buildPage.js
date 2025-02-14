@@ -73,7 +73,15 @@ export default function buildPage() {
             appendToDo(toDo);
         }
     }
+
+    function highlightElement(elementId) {
+        const allSidebarItems = document.querySelectorAll(".sidebarItem");
+        Array.from(allSidebarItems).forEach((element) => element.classList.remove("active"));
+
+        const elementToHighlight = document.getElementById(elementId);
+        elementToHighlight.classList.add("active");
+    }
     
-    return { clearArea, createMainHeader, createDateHeader, appendToDo, createDateSortedToDos }
+    return { clearArea, createMainHeader, createDateHeader, appendToDo, createDateSortedToDos, highlightElement }
 }
 

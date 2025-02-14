@@ -48,15 +48,19 @@
     }
 
 body {
-    --primary-color: ;
-    --secondary-color: ;
-    --tertiary-color: ;
-    --button-color: ;
+    --primary-color: #B0C0BC;
+    --secondary-color: #C1EDCC;
+    --tertiary-color: #A7A7A9;
+    --button-color: #556F44;
+    --border-color: #797270;
+    --overdue-color: #D63230;
 }
 
 header, footer {
     position: fixed;
     height: 40px;
+    background-color: var(--secondary-color);
+    border: 2px solid var(--border-color);
 }
 
 header {
@@ -72,25 +76,44 @@ header {
     display: grid;
     grid-template-columns: minmax(150px, 250px) minmax(500px, 1fr);
     grid-template-rows:calc(100vh - 2*40px);
+    background-color: var(--primary-color);
 }
 
 .columnGrid {
-
+    border: 2px solid var(--border-color);
+    border-top: 0;
+    border-bottom: 0;
+    margin-top: 10px;
 }
 
 .sidebarItem {
     display: flex;
     align-items: center;
     padding: 10px;
+    font-size: 1.5rem;
 }
 
 #mainArea {
-    padding: 0 30px;
+
+}
+
+.MainAreaHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: var(--tertiary-color);
+    border: 2px solid var(--border-color);
+    border-top: 0;
+    border-left: 0;
+    font-size: 1.5rem;
 }
 
 .contentArea {
     display: flex;
     flex-direction: column;
+    padding: 10px 30px;
+    gap: 10px;
 }
 
 .mainHeader {
@@ -111,10 +134,15 @@ header {
     justify-content: space-between;
 }
 
+.lineElement:hover {
+    background-color: var(--border-color);
+}
+
 .toDoContent {
     display:flex;
     flex-direction: row;
     gap: 20px;
+    align-items: end;
 }
 
 footer {
@@ -124,8 +152,21 @@ footer {
     width: 100vw;
 }
 
+.active {
+    background-color: var(--border-color);
+}
+
+.overDue {
+    color: var(--overdue-color);
+    font-weight: 700;
+}
+
 
 .datumHeader, .headerText {
     font-weight:700;
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+
+.toDoTitle {
+    font-size: 1.5rem;
 }

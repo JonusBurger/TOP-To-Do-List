@@ -17,4 +17,6 @@ export default function HomePage(userInfo) {
 
     buildPageInstance.createDateSortedToDos(notOverDueToDos);
 
+    buildPageInstance.highlightElement("Homepage");
+
 }
