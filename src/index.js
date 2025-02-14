@@ -6,8 +6,11 @@ import Project from "./project";
 import dateHandler from "./dateHandler"
 import UserInfo from "./userInfo"
 import buildHomePage from "./buildPage/buildHomepage";
+import buildSidebar from "./buildPage/buildSidebar";
 
 const dateHandlerInstance = dateHandler(); // Call the function to get the object
+
+const buildSidebarInstance = buildSidebar();
 
 const newNote = new Note("Jo", "das ist ein Text");
 
@@ -45,5 +48,6 @@ userData.addProject(newProject2);
 console.log(userData.getAllOverDueToDos());
 
 buildHomePage(userData);
+buildSidebarInstance.initializeSidebar(userData);
 
 

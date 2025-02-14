@@ -92,6 +92,12 @@ export default class Project {
         return overDueToDos
     }
 
+    getAllToDosNotOverdue() {
+        const ToDos = this.getToDos;
+        const overDueToDos = this.getOverDueToDos();
+        return ToDos.filter(toDo => !overDueToDos.includes(toDo))
+    }
+
     finishProject() {
         if ((this.countNumberOfToDosDone() == this.numberOfToDos) && !this.done) {
             console.log("Project finished!");

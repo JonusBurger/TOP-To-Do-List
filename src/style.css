@@ -49,7 +49,10 @@
 
 body {
     --primary-color: #B0C0BC;
+    /*
     --secondary-color: #C1EDCC;
+    */
+    --secondary-color: #042A2B;
     --tertiary-color: #A7A7A9;
     --button-color: #556F44;
     --border-color: #797270;
@@ -91,6 +94,13 @@ header {
     align-items: center;
     padding: 10px;
     font-size: 1.5rem;
+}
+
+.line {
+    width: 100%;
+    height: 10px;
+    background-color: var(--secondary-color);
+    margin: 5px 0;
 }
 
 #mainArea {
@@ -135,7 +145,7 @@ header {
     display: grid;
     grid-template-columns: 1fr 60px;
     grid-template-rows: 40px;
-    grid-auto-rows: 200px;
+    grid-auto-rows: fit-content(800px);
 }
 
 .lineElement:hover {
@@ -153,12 +163,16 @@ header {
     grid-column: 1 / 3;
     display: grid;
     grid-template-columns: minmax(400px, 600px) minmax(300px, 1fr);
-    grid-template-rows: 1fr;
-    padding-right: 40px;
+    grid-template-rows: 1fr; 
+    grid-auto-rows: 1fr;
+    padding-right: 70px;
+    gap: 40px;
 }
-/* Currently To-Do Content layout is broken! */
 
-
+.descriptionDiv {
+    border: 1px solid var(--border-color);
+    padding: 10px 5px;
+}
 
 .noteContainer {
     display: grid;
@@ -166,12 +180,13 @@ header {
     grid-template-rows: 40px 1fr 40px;
     border: 1px solid var(--border-color);
     padding: 10px 5px;
+    flex: 1;
 }
 
-.noteDivArea {
+.noteArea {
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(autofill, 300px);
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-rows: 1fr;  
 }
 
 footer {
@@ -183,6 +198,10 @@ footer {
 
 .active {
     background-color: var(--border-color);
+}
+
+.activeFrame:hover {
+    background-color: var(--primary-color);
 }
 
 .overDue {

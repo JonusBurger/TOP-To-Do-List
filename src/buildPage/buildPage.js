@@ -109,6 +109,7 @@ export default function buildPage() {
         descriptionDiv.appendChild(descriptionTitle);
         descriptionDiv.appendChild(descriptionContent);
         descriptionDiv.appendChild(descriptionEditButton);
+        descriptionDiv.classList.add("descriptionDiv");
 
         toDoContentDiv.appendChild(descriptionDiv);
 
@@ -165,6 +166,10 @@ export default function buildPage() {
     }
 
     function removeExpandedToDo() {
+        const activeLineElement = document.querySelector(".activeFrame");
+        if (activeLineElement) {
+            activeLineElement.classList.remove("activeFrame");
+        }
         const expandedToDo = document.querySelector(".toDoContentFrame");
         if (expandedToDo) {
             expandedToDo.remove();
