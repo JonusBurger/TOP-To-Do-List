@@ -13,6 +13,8 @@ const newNote = new Note("Jo", "das ist ein Text");
 
 const newToDo = new ToDo("Platz 1", "HELP", "low");
 newToDo.addNote(newNote);
+newToDo.addNote(newNote);
+newToDo.addNote(newNote);
 const newToDo2 = new ToDo("Platz 4", "HELP", "low", "2020-11-18");
 const newToDo3 = new ToDo("Platz 2", "HELP", "low", "2004-11-18");
 
@@ -29,6 +31,12 @@ const newProject2 = new Project("Testprojekt Number 2");
 newProject2.addToDo(newToDo4);
 newProject2.addToDo(newToDo5);
 newProject2.addToDo(newToDo6);
+
+const toDoStack = ["das", "ist", "ein", "versuch", "für", "viele", "to-Dos", "wie", "sieht", "das", "aus", "seh", "den", "Nerg"]
+for (let toDo of toDoStack) {
+    const stackToDo = new ToDo(toDo, "JAU", "low", "2025-04-11")
+    newProject2.addToDo(stackToDo);
+}
 
 const userData = new UserInfo();
 userData.addProject(newProject);

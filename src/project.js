@@ -81,6 +81,10 @@ export default class Project {
         this.toDos = this.toDos.filter(toDo => !(toDo.id == toDoId));
     }
 
+    findToDo(toDoId) {
+        return this.toDos = this.toDos.filter(toDo => (toDo.id == toDoId));
+    }
+
     getOverDueToDos() {
         this.sortToDos();
         let overDueToDos;

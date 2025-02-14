@@ -52,6 +52,9 @@ export default class ToDo {
     }
 
     getDateFormated() {
+        if (!this.date) {
+            return "No date"
+        }
         return dateHandlerInstance.formatDate(this.date)
     }
 
@@ -59,7 +62,6 @@ export default class ToDo {
         if (!this.done) {
             this.date = dateHandlerInstance.setDate(newDate);
         }
-        
     }
 
     get getNotes() {

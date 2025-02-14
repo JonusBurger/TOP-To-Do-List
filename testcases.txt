@@ -59,3 +59,10 @@ userData.removeProject(newProject.id);
 console.log(userData.getProjects);
 
 console.log(userData.getAllOverDueToDos());
+
+// Make loads of toDos
+const toDoStack = ["das", "ist", "ein", "versuch", "für", "viele", "to-Dos", "wie", "sieht", "das", "aus"]
+for (let toDo of toDoStack) {
+    const stackToDo = new ToDo(todo, "JAU", "low", "2025-04-11")
+    newProject2.addToDo(stackToDo);
+}
