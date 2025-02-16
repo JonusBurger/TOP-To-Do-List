@@ -192,6 +192,35 @@ header {
     grid-template-rows: 1fr;  
 }
 
+.formContainer {
+    display: none;
+    position:absolute;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(calc(100vh - 80px), auto);
+    width: 100vw;
+}
+
+.formShadow {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+
+}
+
+.formMain {
+    background-color: var(--primary-color);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr;
+}
+
+.formContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:100px minmax(400px, 1fr) repeat(3, 80px);
+}
+
 footer {
     bottom: 0;
     display: flex;
