@@ -1,4 +1,5 @@
 import ProjectPage from "./buildProjectpage";
+import buildHomepage from "./buildHomepage";
 
 export default function buildSidebar(userInfo) {
     const sidebar = document.getElementById("projects");
@@ -13,7 +14,20 @@ export default function buildSidebar(userInfo) {
         return sideBarItem
     }
 
+    function addEventListeners(userInfo) {
+        const staticSidebarElements = document.querySelectorAll(".sidebarItem");
+
+        for (let sidebarItem of staticSidebarElements) {
+            if (sidebarItem.id === "Homepage") {
+                sidebarItem.addEventListener("click", () => buildHomepage(userInfo));
+            } else if (sidebarItem.id === "Archiv") {
+                console.log("Archiv OpenToDo");
+            }
+        }
+    }
+
     function initializeSidebar(userInfo) {
+        addEventListeners(userInfo);
         if (userInfo.getProjects) {
             for (let project of userInfo.getProjects) {
                 sidebar.appendChild(createSidebatItem(project));

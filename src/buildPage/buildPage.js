@@ -21,6 +21,7 @@ export default function buildPage() {
         mainHeader.appendChild(titleElement);
         const btnElement = document.createElement("button");
         btnElement.innerText = "Add To-Do";
+        btnElement.classList.add("button");
         mainHeader.appendChild(btnElement);
         mainHeader.classList.add("mainHeader")
         mainArea.appendChild(mainHeader);
