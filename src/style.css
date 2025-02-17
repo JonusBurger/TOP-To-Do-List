@@ -194,9 +194,9 @@ header {
 }
 
 .formContainer {
-    display: grid;
+    display: none;
     position:absolute;
-    grid-template-columns: minmax(0, 1fr) minmax(600px, 800px);
+    grid-template-columns: minmax(0, 1fr) minmax(620px, 880px);
     grid-template-rows: minmax(calc(100cqh - 80px), auto);
     width: 100cqw;
     margin-top: 40px;
@@ -233,16 +233,31 @@ header {
     padding: 0 20px;
 }
 
+.formnoteContainer {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: minmax(280px, max-content);
+}
+
 .formNotes {
     display: grid;
-    grid-template-columns: 80px repeat(auto-fill, 240px);
+    grid-template-columns: repeat(auto-fill, 240px);
     grid-template-rows: 280px;
     grid-auto-rows: 260px;
     gap: 10px;
 }
 
+.noteHeader {
+    grid-row: 1 / -1;
+}
+
 .noteBox, .addNoteBox {
     border: 1px solid var(--border-color);
+}
+
+.noteButton {
+    display: flex;
+    justify-content: end;
 }
 
 .addIcon {

@@ -14,7 +14,7 @@
         </div>
         <div class="date">Datum</div>
     </header>
-    <div class="formContainer">
+    <div class="formContainer" id="formContainer">
         <div class="formShadow"></div>
         <div class="formMain">
             <div class="formHeader headerText">Create Task</div>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="formRow" id="formDescription">
                     <label for="description" class="alignTop">Description:</label>
-                    <textarea name="description" rows="8" cols="30" maxlength="280" required></textarea>
+                    <textarea name="description" class="small" rows="8" cols="30" maxlength="280" required></textarea>
                 </div>
                 <div class="formRow formBox">
                     <label for="project">Project:</label>
@@ -46,23 +46,25 @@
                     </select>
                 </div>
             </form>
-            <div class="formRow formNotes">
-                <label for="notes">Notes</label>
-                <form action="" class="noteBox" name="noteBox" id="noteBox">
-                    <div class="formTitle">
-                        <label for="title">Title:</label>
-                        <input type="text" name="title" id="title" required>
-                    </div>
-                    <div class="noteDescription">
-                        <textarea name="description" rows="4" cols="15" maxlength="140" required></textarea>
-                    </div>
-                    <div class="noteButton">
-                        <input type="submit" form="noteBox" value="Add" id="addNoteBtn" class="button">
-                    </div>
-                </form>
-                <div class="addNoteBox">
-                    <div class="addIcon">
-                        <img src="../assets/icon_add.png" alt="Icon for Adding Note">
+            <div class="formRow formnoteContainer">
+                <label for="notes" class="noteHeader">Notes</label>
+                <div class="formNotes">
+                    <form action="" class="noteBox" name="noteBox" id="noteBox">
+                        <div class="formTitle">
+                            <label for="title"></label>
+                            <input type="text" name="title" id="title" placeholder="Title" size="14" required>
+                        </div>
+                        <div class="noteDescription">
+                            <textarea name="description" rows="5" cols="15" maxlength="140" class="small" required></textarea>
+                        </div>
+                        <div class="noteButton">
+                            <input type="submit" form="noteBox" value="Add" id="addNoteBtn" class="button">
+                        </div>
+                    </form>
+                    <div class="addNoteBox">
+                        <div class="addIcon">
+                            <img src="../assets/icon_add.png" alt="Icon for Adding Note">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,7 +89,7 @@
             <div class="contentArea" id="contentArea">
                 <div class="firstLine">
                     <div class="datumHeader">Overdue To-Dos</div>
-                    <button class="button">Add to-Do</button>
+                    <button class="button" id="btnAddToDo">Add to-Do</button>
                 </div>
             </div>
         </div>
