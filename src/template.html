@@ -18,26 +18,26 @@
         <div class="formShadow"></div>
         <div class="formMain">
             <div class="formHeader headerText">Create Task</div>
-            <form action="" class="formContent">
-                <div class="formRow">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" required>
+            <form action="" class="formContent" name="formMain" id="formMain">
+                <div class="formColumns">
+                    <div class="formTitle">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" id="title" required>
+                    </div>
                     <div class="formDate">
                         <label for="date">Due Date</label>
                         <input type="date">
                     </div>
                 </div>
                 <div class="formRow" id="formDescription">
-                    <label for="description">Description:</label>
-                    <input type="text" name="description" id="description" required>
+                    <label for="description" class="alignTop">Description:</label>
+                    <textarea name="description" rows="8" cols="30" maxlength="280" required></textarea>
                 </div>
                 <div class="formRow formBox">
                     <label for="project">Project:</label>
                     <select name="project" id="project">
                         <option value="none">none</option>
                     </select>
-                </div>
-                <div class="formRow formBox">
                     <label for="priority">Priority:</label>
                     <select name="priority" id="priority" required>
                         <option value="low">low</option>
@@ -45,13 +45,34 @@
                         <option value="high">high</option>
                     </select>
                 </div>
-                <div class="formRow formButtons">
-                    <input type="submit" value="Cancel" id="cancelBtn" class="button">
-                    <input type="submit" value="Create" id="createBtn" class="button">
-                    <input type="submit" value="Edit" id="editBtn" class="button">
-                </div>
             </form>
+            <div class="formRow formNotes">
+                <label for="notes">Notes</label>
+                <form action="" class="noteBox" name="noteBox" id="noteBox">
+                    <div class="formTitle">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" id="title" required>
+                    </div>
+                    <div class="noteDescription">
+                        <textarea name="description" rows="4" cols="15" maxlength="140" required></textarea>
+                    </div>
+                    <div class="noteButton">
+                        <input type="submit" form="noteBox" value="Add" id="addNoteBtn" class="button">
+                    </div>
+                </form>
+                <div class="addNoteBox">
+                    <div class="addIcon">
+                        <img src="../assets/icon_add.png" alt="Icon for Adding Note">
+                    </div>
+                </div>
+            </div>
+            <div class="formRow formButtons">
+                <input type="submit" form="formMain" value="Cancel" id="cancelBtn" class="button">
+                <input type="submit" form="formMain" value="Create" id="createBtn" class="button">
+                <input type="submit" form="formMain" value="Edit" id="editBtn" class="button">
+            </div>
         </div>
+
     </div>
     <div class="mainGrid">
         <div class="columnGrid" id="sidebar">

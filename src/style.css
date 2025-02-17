@@ -58,6 +58,7 @@ body {
     --button-color-dark: #415534;
     --border-color: #797270;
     --overdue-color: #D63230;
+    container-type: inline-size;
 }
 
 header, footer {
@@ -193,11 +194,13 @@ header {
 }
 
 .formContainer {
-    display: none;
+    display: grid;
     position:absolute;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: minmax(calc(100vh - 80px), auto);
-    width: 100vw;
+    grid-template-columns: minmax(0, 1fr) minmax(600px, 800px);
+    grid-template-rows: minmax(calc(100cqh - 80px), auto);
+    width: 100cqw;
+    margin-top: 40px;
+    font-size: 1.5rem;
 }
 
 .formShadow {
@@ -205,20 +208,59 @@ header {
     height: 100%;
     background-color: black;
     opacity: 0.8;
-
 }
 
 .formMain {
     background-color: var(--primary-color);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 50px 1fr minmax(400px, 1.5fr) 50px;
 }
 
 .formContent {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows:100px minmax(400px, 1fr) repeat(3, 80px);
+    grid-template-rows:50px 300px 50px;
+}
+
+.formColumns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.formRow, .formColumns {
+    padding: 0 20px;
+}
+
+.formNotes {
+    display: grid;
+    grid-template-columns: 80px repeat(auto-fill, 240px);
+    grid-template-rows: 280px;
+    grid-auto-rows: 260px;
+    gap: 10px;
+}
+
+.noteBox, .addNoteBox {
+    border: 1px solid var(--border-color);
+}
+
+.addIcon {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#formDescription {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+}
+
+.formButtons {
+    display: flex;
+    justify-content: end;
 }
 
 footer {
@@ -250,6 +292,7 @@ footer {
 .toDoTitle {
     font-size: 1.5rem;
 }
+
 
 .button {
   align-items: center;
