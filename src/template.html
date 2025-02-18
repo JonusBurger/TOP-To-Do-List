@@ -22,24 +22,24 @@
                 <div class="formColumns">
                     <div class="formTitle">
                         <label for="title">Title:</label>
-                        <input type="text" name="title" id="title" required>
+                        <input type="text" name="title" id="toDoTitle" required>
                     </div>
                     <div class="formDate">
                         <label for="date">Due Date</label>
-                        <input type="date">
+                        <input type="date" id="toDoDueDate">
                     </div>
                 </div>
                 <div class="formRow" id="formDescription">
                     <label for="description" class="alignTop">Description:</label>
-                    <textarea name="description" class="small" rows="8" cols="30" maxlength="280" required></textarea>
+                    <textarea name="description" class="small" rows="8" cols="30" maxlength="280" required id="toDoDescription"></textarea>
                 </div>
                 <div class="formRow formBox">
                     <label for="project">Project:</label>
-                    <select name="project" id="project">
+                    <select name="project" id="toDoProject">
                         <option value="none">none</option>
                     </select>
                     <label for="priority">Priority:</label>
-                    <select name="priority" id="priority" required>
+                    <select name="priority" id="toDoPriority" required>
                         <option value="low">low</option>
                         <option value="medium">medium</option>
                         <option value="high">high</option>
@@ -55,7 +55,7 @@
                             <input type="text" name="title" id="titleNote" placeholder="Title" size="14" required>
                         </div>
                         <div class="noteDescription">
-                            <textarea name="descriptionNote" rows="5" cols="15" maxlength="140" class="small" required></textarea>
+                            <textarea name="descriptionNote" id="descriptionNote" rows="5" cols="15" maxlength="140" class="small" required></textarea>
                         </div>
                         <div class="noteButton">
                             <input type="submit" form="noteBox" value="Add" id="addNoteBtn" class="button">
