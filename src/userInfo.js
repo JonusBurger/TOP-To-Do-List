@@ -1,17 +1,35 @@
 import dateHandler from "./dateHandler"
+import Project from "./project";
 
 const dateHandlerInstance = dateHandler(); // Call the function to get the object
 
 export default class UserInfo {
     constructor(projects = []) {
         this.projects = projects;
+        // ensure that there is at least one project to store ToDos in
+        if (this.projects.length === 0) {
+            const defaultProject = new Project("default");
+            this.defaultId = defaultProject.id;
+            this.projects = [defaultProject];
+        }
     }
 
     get getProjects() {
-        return this.projects
+        return this.projects.filter((project) => project.id != this.defaultId);
+    }
+    
+    getProjectById(projectId) {
+        for (let project of this.projects) {
+            if (project.id === projectId) {
+                return project
+            }
+        }
+        return undefined
     }
 
+
     addProject(project) {
+        this.projects;
         this.projects.push(project);
         this.sortBasedOnDate(this.projects);
     }
@@ -53,6 +71,17 @@ export default class UserInfo {
         const overDueToDos = this.getAllOverDueToDos();
         return allToDos.filter(toDo => !overDueToDos.includes(toDo))
     }
+
+    addToDoToProject(toDo, projectId) {
+        let project = this.getProjectById(projectId);
+        if (project) {
+            project.addToDo(toDo);
+        } else {
+            const defaultProject = this.getProjectById(this.defaultId);
+            defaultProject.addToDo(toDo);
+        }
+    }
+
 
     removeProject(projectId) {
         this.projects = this.projects.filter(project => !(project.id == projectId));

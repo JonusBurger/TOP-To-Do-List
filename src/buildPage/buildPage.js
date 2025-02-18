@@ -15,7 +15,7 @@ export default function buildPage() {
     }
 
     // create MainHeader
-    function createMainHeader(title) {
+    function createMainHeader(title, userInfo) {
         const mainHeader = document.createElement("div");
         const titleElement = document.createElement("div");
         titleElement.innerText = title;
@@ -24,7 +24,7 @@ export default function buildPage() {
         const btnElement = document.createElement("button");
         btnElement.innerText = "Add To-Do";
         btnElement.classList.add("button");
-        btnElement.addEventListener("click", buildFormElementInstance.createToDo)
+        btnElement.addEventListener("click", () => buildFormElementInstance.createToDo(userInfo))
         mainHeader.appendChild(btnElement);
         mainHeader.classList.add("mainHeader")
         mainArea.appendChild(mainHeader);

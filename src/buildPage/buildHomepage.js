@@ -5,7 +5,7 @@ const buildPageInstance = buildPage();
 export default function HomePage(userInfo) {
     
     buildPageInstance.clearArea();
-    buildPageInstance.createMainHeader("Overdue To-Dos");
+    buildPageInstance.createMainHeader("Overdue To-Dos", userInfo);
 
     const overDueToDos = userInfo.getAllOverDueToDos();
 

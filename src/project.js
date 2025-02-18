@@ -7,7 +7,7 @@ export default class Project {
 
     constructor(title, date = undefined, toDos = [], done = false, id = undefined) {
         this.title = title;
-        this.date = date;
+        this.date = date ? dateHandlerInstance.setDate(date) : date;
         this.toDos = toDos;
         this.color = undefined;
         this.numberOfToDos = this.toDos.length;
@@ -23,7 +23,6 @@ export default class Project {
         if (!this.done) {
             this.title = newTitle;
         }
-        
     }
 
     get getDate() {

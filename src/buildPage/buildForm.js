@@ -14,6 +14,7 @@ export default function buildFormElement(userInfo) {
 
     // Info Storage
     let storeNotes = []
+    let activeProjectId = undefined;
 
     function changeFormState() {
         formContainer.style.display === "grid" ? formContainer.style.display = "none" : formContainer.style.display = "grid";
@@ -77,6 +78,9 @@ export default function buildFormElement(userInfo) {
             const toDoPrioritiy = document.getElementById("toDoPriority");
 
             const toDo = new ToDo(toDoTitle.value, toDoDescription.value, toDoPrioritiy.value, toDoDueDate.value);
+            if (activeProjectId) {
+                userInfo.addToDoToProject(toDo, activeProjectId);
+            }
             clearMainForm();
             changeFormState();
         }
@@ -121,7 +125,9 @@ export default function buildFormElement(userInfo) {
     }
    
 
-    function createToDo(project = "none") {
+    function createToDo(project = undefined) {
+        // sets project to input project
+        activeProjectId = project.id;
         console.log("button pressed");
         changeFormState();
         createButton.addEventListener("click", saveButton);

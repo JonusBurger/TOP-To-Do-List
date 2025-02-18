@@ -14,6 +14,9 @@ const buildSidebarInstance = buildSidebar();
 
 const newNote = new Note("Jo", "das ist ein Text");
 
+// add Default Project
+const defaultProject = new Project("default");
+
 const newToDo = new ToDo("Platz 1", "HELP", "low");
 newToDo.addNote(newNote);
 newToDo.addNote(newNote);
@@ -21,7 +24,7 @@ newToDo.addNote(newNote);
 const newToDo2 = new ToDo("Platz 4", "HELP", "low", "2020-11-18");
 const newToDo3 = new ToDo("Platz 2", "HELP", "low", "2004-11-18");
 
-const newProject = new Project("Testprojekt");
+const newProject = new Project("Testprojekt", "2024-04-11");
 newProject.addToDo(newToDo);
 newProject.addToDo(newToDo2);
 newProject.addToDo(newToDo3);
