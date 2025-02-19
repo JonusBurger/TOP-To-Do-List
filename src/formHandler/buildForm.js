@@ -1,20 +1,77 @@
 import Note from "../note"
 import ToDo from "../to-do"
 
-export default function buildFormElement(userInfo) {
+export default function buildFormElement(userInfo, project = undefined) {
     const formContainer = document.getElementById("formContainer");
     const formElement = document.getElementById("formMain");
+    const noteFormContainer = document.querySelector(".formNotes");
 
     const createButton = document.getElementById("createBtn");
+    const cancelFormButton = document.getElementById("cancelBtn");
+    const editButton = document.getElementById("editBtn");
 
     const addNoteFormElement = document.getElementById("noteBox");
     const addNoteBox = document.querySelector(".addNoteBox");
     const addNoteButton = document.getElementById("addNoteBtn");
-    const cancelFormButton = document.getElementById("cancelBtn");
+
 
     // Info Storage
     let storeNotes = []
     let activeProjectId = undefined;
+
+    // Build Form - Decide Blank or in edit state
+    function displayForm(toDo = undefined) {
+        changeFormState();
+        
+        if (toDo) {
+            // if Edit - Fill with To-Do Info
+
+            // change to Edit Button
+
+
+        } else {
+               // If new-ToDo, Decide if project was passed
+               if (project) {
+                activeProjectId = project.id;
+            }
+            editButton.style.display="none";
+            createButton.style.display="flex";
+            createButton.addEventListener("click", saveButton);
+            cancelFormButton.addEventListener("click", cancelButton);
+            handleNoteAddFormElements(1);
+            addNoteBox.addEventListener("click", handleAddNoteButton);
+
+        }
+
+        // Fill Projectbar with projects
+        setProjectInput(userInfo);
+        // Build Note Layout
+
+        // Where to acess Note Data 
+        // function for recreating Note Layout based on List;
+    }
+
+    function displayNotes() {
+        const displayedDocumentNotes = document.querySelectorAll(".note");
+        for (let note in storeNotes) {
+            // Logic for checking if Note already displayed
+
+            const noteContainer = document.createElement("div");
+            noteContainer.classList.add("note");
+            noteContainer.classList.add("noteBox");
+            
+            const noteTitle = document.createElement("div");
+            noteTitle.innerText = note.getTitle;
+
+            const noteDescription = document.createElement("div");
+            noteDescription.innerText = note.getDescription;
+
+            noteContainer.appendChild(noteTitle);
+            noteContainer.appendChild(noteDescription)
+
+            noteFormContainer.prepend(noteContainer);
+        }
+    }
 
     function changeFormState() {
         formContainer.style.display === "grid" ? formContainer.style.display = "none" : formContainer.style.display = "grid";
@@ -88,6 +145,7 @@ export default function buildFormElement(userInfo) {
        const noteDescription = document.getElementById("descriptionNote");
        const noteData = new Note(noteTitle.value, noteDescription.value);
        storeNotes.push(noteData);
+       displayNotes();
        clearNoteForm();
     }
 
@@ -121,6 +179,7 @@ export default function buildFormElement(userInfo) {
 
             clearMainForm();
             clearProjectInput();
+            cancelFormButton.removeEventListener("click", cancelButton);
             changeFormState();
         }
         e.preventDefault();
@@ -155,21 +214,6 @@ export default function buildFormElement(userInfo) {
         noteTitle.value = "";
         noteDescription.value = "";
     }
-  
 
-    function createToDo(project = undefined) {
-        // sets project to input project
-        if (project) {
-            activeProjectId = project.id;
-        }
-        console.log("button pressed");
-        changeFormState();
-        setProjectInput(userInfo);
-        createButton.addEventListener("click", saveButton);
-        cancelFormButton.addEventListener("click", cancelButton);
-        handleNoteAddFormElements(1);
-        addNoteBox.addEventListener("click", handleAddNoteButton);
-    }
-
-    return { createToDo }
+    return { displayForm }
 }
