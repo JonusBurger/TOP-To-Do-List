@@ -1,9 +1,11 @@
 import buildPage from "./buildPage"
+import addFormElements from "../formHandler/addFormElements";
 
 const buildPageInstance = buildPage();
 
-export default function ProjectPage(project) {
+export default function ProjectPage(project, userInfo) {
     
+    const addFormElementsInstance = addFormElements(userInfo, project)
     buildPageInstance.clearArea();
     buildPageInstance.highlightElement(project.id);
 
@@ -15,6 +17,8 @@ export default function ProjectPage(project) {
             buildPageInstance.appendToDo(toDo, true);
         }
     }
+
+    addFormElementsInstance.attachAddToDoListener();
 
 
     const notOverDueToDos = project.getAllToDosNotOverdue();

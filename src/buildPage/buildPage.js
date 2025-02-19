@@ -1,5 +1,5 @@
 import dateHandler from "../dateHandler"
-import buildFormElement from "./buildForm"
+import buildFormElement from "../formHandler/buildForm"
 
 const dateHandlerInstance = dateHandler(); // Call the function to get the object
 
@@ -15,9 +15,7 @@ export default function buildPage() {
     }
 
     // create MainHeader
-    function createMainHeader(title, userInfo) {
-        const buildFormElementInstance = buildFormElement(userInfo);
-
+    function createMainHeader(title) {
         const mainHeader = document.createElement("div");
         const titleElement = document.createElement("div");
         titleElement.innerText = title;
@@ -26,7 +24,7 @@ export default function buildPage() {
         const btnElement = document.createElement("button");
         btnElement.innerText = "Add To-Do";
         btnElement.classList.add("button");
-        btnElement.addEventListener("click", () => buildFormElementInstance.createToDo())
+        btnElement.id = "addToDoBtn";
         mainHeader.appendChild(btnElement);
         mainHeader.classList.add("mainHeader")
         mainArea.appendChild(mainHeader);

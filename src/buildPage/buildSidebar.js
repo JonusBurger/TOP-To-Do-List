@@ -1,13 +1,13 @@
 import ProjectPage from "./buildProjectpage";
 import buildHomepage from "./buildHomepage";
 
-export default function buildSidebar(userInfo) {
+export default function buildSidebar() {
     const sidebar = document.getElementById("projects");
 
-    function createSidebatItem(project) {
+    function createSidebatItem(project, userInfo) {
         const sideBarItem = document.createElement("div");
         sideBarItem.innerText = project.getTitle;
-        sideBarItem.addEventListener("click", () => ProjectPage(project));
+        sideBarItem.addEventListener("click", () => ProjectPage(project, userInfo));
         sideBarItem.classList.add("sidebarItem")
         sideBarItem.id = project.id
         
@@ -30,7 +30,7 @@ export default function buildSidebar(userInfo) {
         addEventListeners(userInfo);
         if (userInfo.getProjects) {
             for (let project of userInfo.getProjects) {
-                sidebar.appendChild(createSidebatItem(project));
+                sidebar.appendChild(createSidebatItem(project, userInfo));
             }
         }
     }
