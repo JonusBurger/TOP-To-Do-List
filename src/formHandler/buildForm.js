@@ -117,7 +117,7 @@ export default function buildFormElement(userInfo) {
             }
             // Reset notes
             storeNotes = []
-            userInfo.addToDoToProject(toDo, activeProjectId);
+            userInfo.addToDoToProject(toDo, toDoProject.options[toDoProject.selectedIndex].value);
 
             clearMainForm();
             clearProjectInput();
@@ -132,6 +132,7 @@ export default function buildFormElement(userInfo) {
         clearNoteForm();
         clearProjectInput();
         changeFormState();
+        e.currentTarget.removeEventListener("click", cancelButton);
     }
 
     function clearMainForm() {
