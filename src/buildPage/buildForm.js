@@ -36,6 +36,29 @@ export default function buildFormElement(userInfo) {
         }       
     }
 
+    function setProjectInput(userInfo) {
+        const projectTab = document.getElementById("toDoProject");
+        const projects = userInfo.getProjects;
+
+        for (let project of projects) {
+            const projectOption = document.createElement("option");
+            projectOption.value = project.id;
+            projectOption.innerText = project.getTitle;
+            if (project.id === activeProjectId) {
+                projectOption.selected = true;
+            }
+            projectTab.appendChild(projectOption);
+        }
+    }
+
+    function clearProjectInput() {
+        const projectTab = document.getElementById("toDoProject");
+        const defaultProject = document.createElement("option");
+        defaultProject.value = "default";
+        defaultProject.innerText = "none";
+        projectTab.replaceChildren(defaultProject);
+    }
+
     function handleNoteAddFormElements(on) {
         if (on) {
             changeAddNoteButton(1);
@@ -59,6 +82,15 @@ export default function buildFormElement(userInfo) {
         e.preventDefault();
     }
 
+    function handleNoteFormInput() {
+       // Function for validating input of fields!
+       const noteTitle =  document.getElementById("titleNote");
+       const noteDescription = document.getElementById("descriptionNote");
+       const noteData = new Note(noteTitle.value, noteDescription.value);
+       storeNotes.push(noteData);
+       clearNoteForm();
+    }
+
     // Add NoteButton
     function handleAddNoteButton() {
         handleNoteAddFormElements(0); 
@@ -66,10 +98,12 @@ export default function buildFormElement(userInfo) {
         addNoteButton.addEventListener("click", handleAddNoteFormButton);
     }
 
+    // handle submit for ToDo
     function saveButton(e) {
-        // handle submit for ToDo
         let formMainStatus = formMain.checkValidity();
         formMain.reportValidity();
+
+        // add ToDo to UserInfo
         if(formMainStatus) {
             const toDoTitle = document.getElementById("toDoTitle");
             const toDoDueDate = document.getElementById("toDoDueDate");
@@ -78,10 +112,15 @@ export default function buildFormElement(userInfo) {
             const toDoPrioritiy = document.getElementById("toDoPriority");
 
             const toDo = new ToDo(toDoTitle.value, toDoDescription.value, toDoPrioritiy.value, toDoDueDate.value);
-            if (activeProjectId) {
-                userInfo.addToDoToProject(toDo, activeProjectId);
+            for (let note of storeNotes) {
+                toDo.addNote(note);
             }
+            // Reset notes
+            storeNotes = []
+            userInfo.addToDoToProject(toDo, activeProjectId);
+
             clearMainForm();
+            clearProjectInput();
             changeFormState();
         }
         e.preventDefault();
@@ -91,6 +130,7 @@ export default function buildFormElement(userInfo) {
         e.preventDefault();
         // clear all Form-Elements
         clearNoteForm();
+        clearProjectInput();
         changeFormState();
     }
 
@@ -106,7 +146,6 @@ export default function buildFormElement(userInfo) {
         toDoDescription.value = "";
         toDoProject.value = "none";
         toDoPrioritiy.value = "low";
-
     }
 
     function clearNoteForm() {
@@ -115,28 +154,20 @@ export default function buildFormElement(userInfo) {
         noteTitle.value = "";
         noteDescription.value = "";
     }
-
-    function handleNoteFormInput() {
-       // Function for validating input of fields!
-       const noteTitle =  document.getElementById("titleNote");
-       const noteDescription = document.getElementById("descriptionNote");
-       const noteData = new Note(noteTitle.value, noteDescription.value);
-       clearNoteForm();
-    }
-   
+  
 
     function createToDo(project = undefined) {
         // sets project to input project
-        activeProjectId = project.id;
+        if (project) {
+            activeProjectId = project.id;
+        }
         console.log("button pressed");
         changeFormState();
+        setProjectInput(userInfo);
         createButton.addEventListener("click", saveButton);
         cancelFormButton.addEventListener("click", cancelButton);
         handleNoteAddFormElements(1);
         addNoteBox.addEventListener("click", handleAddNoteButton);
-
-        // Initialize Data Storage
-        storeNotes = [];
     }
 
     return { createToDo }
