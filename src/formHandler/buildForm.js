@@ -53,23 +53,26 @@ export default function buildFormElement(userInfo, project = undefined) {
 
     function displayNotes() {
         const displayedDocumentNotes = document.querySelectorAll(".note");
-        for (let note in storeNotes) {
+        for (let i = 0; i < storeNotes.length; i++ ) {
             // Logic for checking if Note already displayed
-
-            const noteContainer = document.createElement("div");
-            noteContainer.classList.add("note");
-            noteContainer.classList.add("noteBox");
-            
-            const noteTitle = document.createElement("div");
-            noteTitle.innerText = note.getTitle;
-
-            const noteDescription = document.createElement("div");
-            noteDescription.innerText = note.getDescription;
-
-            noteContainer.appendChild(noteTitle);
-            noteContainer.appendChild(noteDescription)
-
-            noteFormContainer.prepend(noteContainer);
+            if (!storeNotes[i][1]){
+                let note = storeNotes[i][0]
+                const noteContainer = document.createElement("div");
+                noteContainer.classList.add("note");
+                noteContainer.classList.add("noteBox");
+                
+                const noteTitle = document.createElement("div");
+                noteTitle.innerText = note.getTitle;
+    
+                const noteDescription = document.createElement("div");
+                noteDescription.innerText = note.getDescription;
+    
+                noteContainer.appendChild(noteTitle);
+                noteContainer.appendChild(noteDescription);
+    
+                noteFormContainer.insertBefore(noteContainer, addNoteFormElement);
+                storeNotes[i][1] = true;
+            }
         }
     }
 
@@ -144,7 +147,7 @@ export default function buildFormElement(userInfo, project = undefined) {
        const noteTitle =  document.getElementById("titleNote");
        const noteDescription = document.getElementById("descriptionNote");
        const noteData = new Note(noteTitle.value, noteDescription.value);
-       storeNotes.push(noteData);
+       storeNotes.push([noteData, false]);
        displayNotes();
        clearNoteForm();
     }
@@ -180,6 +183,8 @@ export default function buildFormElement(userInfo, project = undefined) {
             clearMainForm();
             clearProjectInput();
             cancelFormButton.removeEventListener("click", cancelButton);
+            clearNoteForm()
+            clearNotes();
             changeFormState();
         }
         e.preventDefault();
@@ -190,6 +195,7 @@ export default function buildFormElement(userInfo, project = undefined) {
         // clear all Form-Elements
         clearNoteForm();
         clearProjectInput();
+        clearNotes();
         changeFormState();
         e.currentTarget.removeEventListener("click", cancelButton);
     }
@@ -213,6 +219,14 @@ export default function buildFormElement(userInfo, project = undefined) {
         const noteDescription = document.getElementById("descriptionNote");
         noteTitle.value = "";
         noteDescription.value = "";
+    }
+
+    function clearNotes() {
+
+        const displayedDocumentNotes = document.querySelectorAll(".note");
+        for (let note of displayedDocumentNotes) {
+            note.remove();
+        }
     }
 
     return { displayForm }
