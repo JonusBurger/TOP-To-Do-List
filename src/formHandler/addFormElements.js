@@ -11,10 +11,6 @@ export default function addFormElements(userInfo, project = undefined) {
     const addNoteButton = document.getElementById("addNoteBtn");
     const cancelFormButton = document.getElementById("cancelBtn");
 
-    // Info Storage
-    let notes = [];
-    let activeProjectId;
-
     const buildFormElementInstance = buildFormElement(userInfo, project);
 
     function attachAddToDoListener() {

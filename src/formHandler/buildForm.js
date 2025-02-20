@@ -25,10 +25,14 @@ export default function buildFormElement(userInfo, project = undefined) {
         
         if (toDo) {
             // if Edit - Fill with To-Do Info
-
+            inserToDoInfo(toDo)
+            displayNotes();
             // change to Edit Button
-
-
+            editButton.style.display="flex";
+            createButton.style.display="none";
+            cancelFormButton.addEventListener("click", cancelButton);
+            handleNoteAddFormElements(1);
+            addNoteBox.addEventListener("click", handleAddNoteButton);
         } else {
                // If new-ToDo, Decide if project was passed
                if (project) {
@@ -73,6 +77,23 @@ export default function buildFormElement(userInfo, project = undefined) {
                 noteFormContainer.insertBefore(noteContainer, addNoteFormElement);
                 storeNotes[i][1] = true;
             }
+        }
+    }
+
+    function inserToDoInfo(toDo) {
+        const formTitle = document.getElementById("toDoTitle");
+        formTitle.value = toDo.getTitle;
+
+        if (toDo.getDate) {
+            const formDate = document.getElementById("toDoDueDate");
+            formDate.value = toDo.getDate;
+        }
+
+        const formDescription = document.getElementById("toDoDescription");
+        formDescription.value = toDo.getDescription;
+
+        for (let note of toDo.getNotes) {
+            storeNotes.push([note, false]);
         }
     }
 

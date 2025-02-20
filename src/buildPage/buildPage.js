@@ -65,7 +65,8 @@ export default function buildPage() {
         lineElement.appendChild(btnDone);
         lineElement.classList.add("lineElement");
         lineElement.id = toDo.id;
-        lineElement.addEventListener("click", function(e) {expandToDo(e, toDo)});
+        // lineElement.addEventListener("click", function(e) {expandToDo(e, toDo)});
+        // lineElement.addEventListener("click", function(e) {expandToDo(e, toDo)});
         mainArea.appendChild(lineElement);
     }
 
