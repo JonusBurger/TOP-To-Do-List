@@ -18,5 +18,17 @@ export default function addFormElements(userInfo, project = undefined) {
         btnElement.addEventListener("click", () => buildFormElementInstance.displayForm());
     }
 
-    return { attachAddToDoListener }
+    function addToDoEditEventLister() {
+        const mainArea = document.getElementById("contentArea");
+
+        mainArea.addEventListener("click", (e) => {
+            if (e.target.classList.contains("toDoContent")) {
+                const parentElement = e.target.parentNode;
+                const toDo = userInfo.findToDo(parentElement.id);
+                buildFormElementInstance.displayForm(toDo);
+                console.log("Event fired!")}
+        });
+    }
+
+    return { attachAddToDoListener, addToDoEditEventLister }
 }

@@ -9,6 +9,8 @@ export default function HomePage(userInfo) {
     buildPageInstance.createMainHeader("Overdue To-Dos", userInfo);
 
     addFormElementsInstance.attachAddToDoListener();
+    addFormElementsInstance.addToDoEditEventLister()
+
     const overDueToDos = userInfo.getAllOverDueToDos();
 
     for (let toDo of overDueToDos) {
@@ -20,5 +22,4 @@ export default function HomePage(userInfo) {
     buildPageInstance.createDateSortedToDos(notOverDueToDos);
 
     buildPageInstance.highlightElement("Homepage");
-
 }

@@ -72,6 +72,12 @@ export default class UserInfo {
         return allToDos.filter(toDo => !overDueToDos.includes(toDo))
     }
 
+    findToDo(toDoId) {
+        let toDos = this.getAllToDos()
+        toDos = toDos.filter(toDo => (toDo.id == toDoId));
+        return toDos[0]
+    }
+
     addToDoToProject(toDo, projectId) {
         let project = this.getProjectById(projectId);
         if (project) {
