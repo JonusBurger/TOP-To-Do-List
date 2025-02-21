@@ -26,7 +26,7 @@ export default function addFormElements(userInfo, project = undefined) {
                 const parentElement = e.target.parentNode;
                 const toDo = userInfo.findToDo(parentElement.id);
                 buildFormElementInstance.displayForm(toDo);
-                console.log("Event fired!")}
+            }
         });
     }
 

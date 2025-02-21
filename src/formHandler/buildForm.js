@@ -26,13 +26,18 @@ export default function buildFormElement(userInfo, project = undefined) {
         if (toDo) {
             // if Edit - Fill with To-Do Info
             inserToDoInfo(toDo)
+            // function for recreating Note Layout based on List;
             displayNotes();
             // change to Edit Button
-            editButton.style.display="flex";
+            if (!toDo.done) {
+                editButton.style.display="flex";
+                editButton.addEventListener("click", (e) => edit(e, toDo));
+            } else {
+                editButton.style.display="none";
+            }
+
             createButton.style.display="none";
-            cancelFormButton.addEventListener("click", cancelButton);
-            handleNoteAddFormElements(1);
-            addNoteBox.addEventListener("click", handleAddNoteButton);
+
         } else {
                // If new-ToDo, Decide if project was passed
                if (project) {
@@ -41,18 +46,16 @@ export default function buildFormElement(userInfo, project = undefined) {
             editButton.style.display="none";
             createButton.style.display="flex";
             createButton.addEventListener("click", saveButton);
-            cancelFormButton.addEventListener("click", cancelButton);
-            handleNoteAddFormElements(1);
-            addNoteBox.addEventListener("click", handleAddNoteButton);
+
 
         }
 
         // Fill Projectbar with projects
         setProjectInput(userInfo);
         // Build Note Layout
-
-        // Where to acess Note Data 
-        // function for recreating Note Layout based on List;
+        cancelFormButton.addEventListener("click", cancelButton);
+        handleNoteAddFormElements(1);
+        addNoteBox.addEventListener("click", handleAddNoteButton);
     }
 
     function displayNotes() {
@@ -211,12 +214,61 @@ export default function buildFormElement(userInfo, project = undefined) {
         e.preventDefault();
     }
 
+    function edit(e, toDo) {
+        let formMainStatus = formMain.checkValidity();
+        formMain.reportValidity();
+
+        e.preventDefault();
+
+        if (formMainStatus) {
+            const toDoTitle = document.getElementById("toDoTitle");
+            const toDoDueDate = document.getElementById("toDoDueDate");
+            const toDoDescription = document.getElementById("toDoDescription");
+            const toDoProject = document.getElementById("toDoProject");
+            const toDoPrioritiy = document.getElementById("toDoPriority");
+
+            toDo.setTitle = toDoTitle.value;
+            if (toDoDueDate.value) {
+                toDo.setDate = toDoDueDate.value;
+            }
+            
+            toDo.setDescription = toDoDescription.value;
+            toDo.setPriority = toDoPrioritiy.value;
+
+            // immediatly end if no new notes were added
+            if (!storeNotes.length > toDo.getNotes.length) {
+                clearMainForm();
+                clearProjectInput();
+                cancelFormButton.removeEventListener("click", cancelButton);
+                clearNoteForm()
+                clearNotes();
+                changeFormState();
+
+                return console.log("HER!")
+            }
+            for (let note in storeNotes.slice(toDo.getNotes.length)) {
+                console.log(note);
+                toDo.addNote(note);
+            }
+
+            clearMainForm();
+            clearProjectInput();
+            cancelFormButton.removeEventListener("click", cancelButton);
+            clearNoteForm()
+            clearNotes();
+            changeFormState();
+
+        }
+        
+    }
+
     function cancelButton(e) {
         e.preventDefault();
         // clear all Form-Elements
         clearNoteForm();
         clearProjectInput();
         clearNotes();
+        clearMainForm();
         changeFormState();
         e.currentTarget.removeEventListener("click", cancelButton);
     }

@@ -65,8 +65,6 @@ export default function buildPage() {
         lineElement.appendChild(btnDone);
         lineElement.classList.add("lineElement");
         lineElement.id = toDo.id;
-        // lineElement.addEventListener("click", function(e) {expandToDo(e, toDo)});
-        // lineElement.addEventListener("click", function(e) {expandToDo(e, toDo)});
         mainArea.appendChild(lineElement);
     }
 
@@ -89,98 +87,7 @@ export default function buildPage() {
         elementToHighlight.classList.add("active");
     }
 
-    function expandToDo(e, toDo) {
-        removeExpandedToDo();
-        const lineElement = document.getElementById(e.currentTarget.id);
-        console.log("Event fired");
-        lineElement.classList.add("activeFrame");
-        const toDoContentDiv = document.createElement("div");
-        toDoContentDiv.classList.add("toDoContentFrame");
-
-        const descriptionDiv = document.createElement("div");
-        const descriptionTitle = document.createElement("div");
-        const descriptionContent = document.createElement("div");
-        const descriptionEditButton = document.createElement("button");
-
-        descriptionTitle.innerText = "Description";
-        descriptionTitle.classList.add("contentHeader");
-
-        descriptionContent.innerText = toDo.getDescription;
-
-        descriptionEditButton.innerText = "Edit";
-        descriptionEditButton.addEventListener("click", () => (console.log("Hello!")));
-        descriptionEditButton.classList.add("btn");
-
-        descriptionDiv.appendChild(descriptionTitle);
-        descriptionDiv.appendChild(descriptionContent);
-        descriptionDiv.appendChild(descriptionEditButton);
-        descriptionDiv.classList.add("descriptionDiv");
-
-        toDoContentDiv.appendChild(descriptionDiv);
-
-        const noteDiv = document.createElement("div");
-        const noteDivTitle = document.createElement("div");
-        const noteDivArea = document.createElement("div");
-        const noteEditButton = document.createElement("button"); 
-
-        noteDiv.classList.add("noteContainer");
-
-        noteDivTitle.innerText = "Notes";
-        noteDivTitle.classList.add("contentHeader");
-        
-        noteDiv.appendChild(noteDivTitle);
-
-        
-        for (let note of toDo.getNotes) {
-            const noteContentDiv = document.createElement("div");
-            const noteTitle = document.createElement("div");
-            const noteDate = document.createElement("div");
-            const noteDescription = document.createElement("div");
-
-            noteTitle.innerText = note.getTitle;
-            noteTitle.classList.add("noteTitle");
-
-            noteDate.innerText = note.getDateFormated();
-            noteDate.classList.add("noteDate");
-
-            noteDescription.innerText = note.getDescription;
-            noteDescription.classList.add("noteDescription");
-
-            noteContentDiv.appendChild(noteTitle);
-            noteContentDiv.appendChild(noteDate);
-            noteContentDiv.appendChild(noteDescription);
-
-            noteContentDiv.classList.add("nodeContent");
-
-            noteDivArea.appendChild(noteContentDiv);
-
-            noteDivArea.classList.add("noteArea");
-        }
-
-        noteDiv.appendChild(noteDivArea);
-
-        noteEditButton.innerText ="Add Note";
-        noteEditButton.addEventListener("click", () => (console.log("Hello!")));
-        noteEditButton.classList.add("btn");
-
-        noteDiv.appendChild(noteEditButton);
-
-        toDoContentDiv.appendChild(noteDiv);
-
-        lineElement.appendChild(toDoContentDiv);
-    }
-
-    function removeExpandedToDo() {
-        const activeLineElement = document.querySelector(".activeFrame");
-        if (activeLineElement) {
-            activeLineElement.classList.remove("activeFrame");
-        }
-        const expandedToDo = document.querySelector(".toDoContentFrame");
-        if (expandedToDo) {
-            expandedToDo.remove();
-        }
-    }
     
-    return { clearArea, createMainHeader, createDateHeader, appendToDo, createDateSortedToDos, highlightElement, expandToDo }
+    return { clearArea, createMainHeader, createDateHeader, appendToDo, createDateSortedToDos, highlightElement }
 }
 
