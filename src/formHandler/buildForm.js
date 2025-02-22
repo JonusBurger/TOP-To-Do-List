@@ -1,5 +1,6 @@
 import Note from "../note"
 import ToDo from "../to-do"
+import localStorageHandler from "../localStorageHandler";
 
 export default function buildFormElement(userInfo, project = undefined) {
     const formContainer = document.getElementById("formContainer");
@@ -19,6 +20,9 @@ export default function buildFormElement(userInfo, project = undefined) {
     let storeNotes = []
     let activeProjectId = undefined;
     let storedToDo = undefined
+
+    // API for storage
+    const localStorageHandlerInstance = localStorageHandler();
 
     // Build Form - Decide Blank or in edit state
     function displayForm(toDo = undefined) {
@@ -218,6 +222,8 @@ export default function buildFormElement(userInfo, project = undefined) {
             clearNoteForm()
             clearNotes();
             changeFormState();
+
+            localStorageHandlerInstance.storeUserInfo(userInfo);
         }
         e.preventDefault();
     }
@@ -257,7 +263,9 @@ export default function buildFormElement(userInfo, project = undefined) {
                 editButton.removeEventListener("click", editEventListener)
                 cancelFormButton.removeEventListener("click", cancelButton);
 
-                return console.log("HER!")
+                localStorageHandlerInstance.storeUserInfo(userInfo);
+
+                return 
             }
             for (let note of storeNotes.slice(toDo.getNotes.length)) {
                 toDo.addNote(note[0]);
@@ -273,6 +281,8 @@ export default function buildFormElement(userInfo, project = undefined) {
 
             editButton.removeEventListener("click", editEventListener);
             cancelFormButton.removeEventListener("click", cancelButton);
+
+            localStorageHandlerInstance.storeUserInfo(userInfo);
 
         }
         
