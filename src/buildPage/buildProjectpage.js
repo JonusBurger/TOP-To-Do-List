@@ -20,7 +20,6 @@ export default function ProjectPage(project, userInfo) {
 
     addFormElementsInstance.attachAddToDoListener();
 
-
     const notOverDueToDos = project.getAllToDosNotOverdue();
 
     buildPageInstance.createDateSortedToDos(notOverDueToDos);

@@ -18,6 +18,7 @@ export default function buildFormElement(userInfo, project = undefined) {
     // Info Storage
     let storeNotes = []
     let activeProjectId = undefined;
+    let storedToDo = undefined
 
     // Build Form - Decide Blank or in edit state
     function displayForm(toDo = undefined) {
@@ -30,8 +31,9 @@ export default function buildFormElement(userInfo, project = undefined) {
             displayNotes();
             // change to Edit Button
             if (!toDo.done) {
+                storedToDo = toDo;
                 editButton.style.display="flex";
-                editButton.addEventListener("click", (e) => edit(e, toDo));
+                editButton.addEventListener("click", editEventListener);
             } else {
                 editButton.style.display="none";
             }
@@ -183,6 +185,11 @@ export default function buildFormElement(userInfo, project = undefined) {
         addNoteButton.addEventListener("click", handleAddNoteFormButton);
     }
 
+    function editEventListener(e) { 
+        e.preventDefault();
+        edit(e, storedToDo);
+    }
+
     // handle submit for ToDo
     function saveButton(e) {
         let formMainStatus = formMain.checkValidity();
@@ -201,7 +208,8 @@ export default function buildFormElement(userInfo, project = undefined) {
                 toDo.addNote(note);
             }
             // Reset notes
-            storeNotes = []
+            storeNotes = [];
+            storedToDo = undefined;
             userInfo.addToDoToProject(toDo, toDoProject.options[toDoProject.selectedIndex].value);
 
             clearMainForm();
@@ -218,7 +226,7 @@ export default function buildFormElement(userInfo, project = undefined) {
         let formMainStatus = formMain.checkValidity();
         formMain.reportValidity();
 
-        e.preventDefault();
+        
 
         if (formMainStatus) {
             const toDoTitle = document.getElementById("toDoTitle");
@@ -239,24 +247,32 @@ export default function buildFormElement(userInfo, project = undefined) {
             if (!storeNotes.length > toDo.getNotes.length) {
                 clearMainForm();
                 clearProjectInput();
-                cancelFormButton.removeEventListener("click", cancelButton);
+                
                 clearNoteForm()
                 clearNotes();
                 changeFormState();
+                storeNotes = [];
+                storedToDo = undefined;
+
+                editButton.removeEventListener("click", editEventListener)
+                cancelFormButton.removeEventListener("click", cancelButton);
 
                 return console.log("HER!")
             }
-            for (let note in storeNotes.slice(toDo.getNotes.length)) {
-                console.log(note);
-                toDo.addNote(note);
+            for (let note of storeNotes.slice(toDo.getNotes.length)) {
+                toDo.addNote(note[0]);
             }
 
             clearMainForm();
             clearProjectInput();
-            cancelFormButton.removeEventListener("click", cancelButton);
             clearNoteForm()
             clearNotes();
             changeFormState();
+            storeNotes = [];
+            storedToDo = undefined;
+
+            editButton.removeEventListener("click", editEventListener);
+            cancelFormButton.removeEventListener("click", cancelButton);
 
         }
         
@@ -270,6 +286,8 @@ export default function buildFormElement(userInfo, project = undefined) {
         clearNotes();
         clearMainForm();
         changeFormState();
+        storeNotes = [];
+        storedToDo = undefined;
         e.currentTarget.removeEventListener("click", cancelButton);
     }
 
