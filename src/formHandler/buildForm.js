@@ -267,8 +267,6 @@ export default function buildFormElement(userInfo, project = undefined) {
 
                 localStorageHandlerInstance.storeUserInfo(userInfo);
 
-                console.log("keine neuen notes!");
-
                 return 
             }
 
@@ -288,7 +286,6 @@ export default function buildFormElement(userInfo, project = undefined) {
             cancelFormButton.removeEventListener("click", cancelButton);
 
             localStorageHandlerInstance.storeUserInfo(userInfo);
-
         }
         
     }

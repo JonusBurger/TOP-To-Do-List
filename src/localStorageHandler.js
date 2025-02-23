@@ -52,7 +52,7 @@ export default function localStorageHandler() {
 
     function loadNotes(toDo) {
         const loadedNotes = []
-        for (let i = 0; i < toDo.notes; i++) {
+        for (let i = 0; i < toDo.notes.length; i++) {
             const note = new Note(toDo.notes[i].title, toDo.notes[i].description, toDo.notes[i].date, toDo.notes[i].id);
             loadedNotes.push(note);
         }
