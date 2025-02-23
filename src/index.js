@@ -23,6 +23,7 @@ buildHomePage(userData);
 addFormElementsInstance.addToDoEditEventLister();
 
 buildSidebarInstance.initializeSidebar(userData);
+addFormElementsInstance.attachaddProjectEventListener()
 
 
 

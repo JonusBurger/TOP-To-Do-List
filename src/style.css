@@ -88,6 +88,9 @@ header {
 .columnGrid {
     border: 2px solid var(--border-color);
     border-top: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     border-bottom: 0;
     padding-top: 10px;
 }
@@ -104,6 +107,14 @@ header {
     height: 10px;
     background-color: var(--secondary-color);
     margin: 5px 0;
+}
+
+.addProjectContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
 }
 
 #mainArea {
@@ -278,6 +289,19 @@ header {
 .formButtons {
     display: flex;
     justify-content: end;
+}
+
+.formMainProject {
+    background-color: var(--primary-color);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 50px;
+}
+
+.formContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:50px ;
 }
 
 footer {
