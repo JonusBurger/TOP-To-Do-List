@@ -179,7 +179,7 @@ export default function buildFormElement(userInfo, project = undefined) {
        const noteData = new Note(noteTitle.value, noteDescription.value);
        storeNotes.push([noteData, false]);
        displayNotes();
-       clearNoteForm();
+       clearNoteForm(false);
     }
 
     // Add NoteButton
@@ -196,6 +196,7 @@ export default function buildFormElement(userInfo, project = undefined) {
 
     // handle submit for ToDo
     function saveButton(e) {
+        e.preventDefault();
         let formMainStatus = formMain.checkValidity();
         formMain.reportValidity();
 
@@ -219,13 +220,14 @@ export default function buildFormElement(userInfo, project = undefined) {
             clearMainForm();
             clearProjectInput();
             cancelFormButton.removeEventListener("click", cancelButton);
-            clearNoteForm()
+            createButton.removeEventListener("click", saveButton);
+            clearNoteForm(true)
             clearNotes();
             changeFormState();
 
             localStorageHandlerInstance.storeUserInfo(userInfo);
         }
-        e.preventDefault();
+        
     }
 
     function edit(e, toDo) {
@@ -254,7 +256,7 @@ export default function buildFormElement(userInfo, project = undefined) {
                 clearMainForm();
                 clearProjectInput();
                 
-                clearNoteForm()
+                clearNoteForm(true)
                 clearNotes();
                 changeFormState();
                 storeNotes = [];
@@ -265,15 +267,18 @@ export default function buildFormElement(userInfo, project = undefined) {
 
                 localStorageHandlerInstance.storeUserInfo(userInfo);
 
+                console.log("keine neuen notes!");
+
                 return 
             }
+
             for (let note of storeNotes.slice(toDo.getNotes.length)) {
                 toDo.addNote(note[0]);
             }
 
             clearMainForm();
             clearProjectInput();
-            clearNoteForm()
+            clearNoteForm(true)
             clearNotes();
             changeFormState();
             storeNotes = [];
@@ -291,7 +296,7 @@ export default function buildFormElement(userInfo, project = undefined) {
     function cancelButton(e) {
         e.preventDefault();
         // clear all Form-Elements
-        clearNoteForm();
+        clearNoteForm(true);
         clearProjectInput();
         clearNotes();
         clearMainForm();
@@ -311,15 +316,24 @@ export default function buildFormElement(userInfo, project = undefined) {
         toDoTitle.value = "";
         toDoDueDate.value = "";
         toDoDescription.value = "";
-        toDoProject.value = "none";
+        //toDoProject.value = "default";
+        // toDoProject.innerText = "none";
         toDoPrioritiy.value = "low";
     }
 
-    function clearNoteForm() {
+    function clearNoteForm(removeEventListener  = false) {
         const noteTitle =  document.getElementById("titleNote");
         const noteDescription = document.getElementById("descriptionNote");
         noteTitle.value = "";
         noteDescription.value = "";
+        if (removeEventListener){
+            if (addNoteFormElement.style.display === "flex") {
+                addNoteButton.removeEventListener("click", handleAddNoteFormButton)
+            } else {
+                addNoteBox.removeEventListener("click", handleAddNoteButton)
+            }
+        }
+
     }
 
     function clearNotes() {

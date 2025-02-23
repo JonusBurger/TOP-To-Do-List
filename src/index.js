@@ -19,8 +19,9 @@ const localStorageHandlerInstance = localStorageHandler()
 const userData = localStorageHandlerInstance.checkForStorage();
 
 const addFormElementsInstance = addFormElements(userData)
-addFormElementsInstance.addToDoEditEventLister();
 buildHomePage(userData);
+addFormElementsInstance.addToDoEditEventLister();
+
 buildSidebarInstance.initializeSidebar(userData);
 
 

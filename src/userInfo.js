@@ -6,11 +6,12 @@ const dateHandlerInstance = dateHandler(); // Call the function to get the objec
 export default class UserInfo {
     constructor(projects = []) {
         this.projects = projects;
+        this.defaultId = "defaultId";
         // ensure that there is at least one project to store ToDos in
         if (this.projects.length === 0) {
-            const defaultProject = new Project("default");
-            this.defaultId = defaultProject.id;
+            const defaultProject = new Project("default", undefined, [], false, this.defaultId);
             this.projects = [defaultProject];
+            console.log(defaultProject);
         }
     }
 

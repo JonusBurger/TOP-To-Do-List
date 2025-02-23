@@ -81,5 +81,9 @@ export default function localStorageHandler() {
         localStorage.setItem("user", JSON.stringify(user));
     }
 
-    return { checkForStorage, storeUserInfo }
+    function removeLocalStorage(key) {
+        localStorage.removeItem(key)
+    }
+
+    return { checkForStorage, storeUserInfo, removeLocalStorage }
 }
