@@ -1,5 +1,6 @@
 import Project from "../project";
 import localStorageHandler from "../localStorageHandler";
+import buildSidebar from "../buildPage/buildSidebar";
 
 export default function buildFormElementProject(userInfo) {
     const formContainer = document.getElementById("formContainerProject");
@@ -14,6 +15,9 @@ export default function buildFormElementProject(userInfo) {
 
     // API for storage
     const localStorageHandlerInstance = localStorageHandler();
+
+    // load Sidebar for updating
+    const buildSidebarInstance = buildSidebar();
 
     // Build Form - Decide Blank or in edit state
     function displayForm(project = undefined) {
@@ -80,7 +84,7 @@ export default function buildFormElementProject(userInfo) {
             const projectDueDate = document.getElementById("projectDueDate");
             const project = new Project(projectTitle.value, projectDueDate.value);
 
-            userInfo.addProject(activeProject);
+            userInfo.addProject(project);
 
             // Reset Storage
             activeProject = undefined;
@@ -93,6 +97,7 @@ export default function buildFormElementProject(userInfo) {
             changeFormState();
 
             localStorageHandlerInstance.storeUserInfo(userInfo);
+            buildSidebarInstance.updateSidebar(userInfo);
         }
         
     }
@@ -120,6 +125,7 @@ export default function buildFormElementProject(userInfo) {
             cancelFormButton.removeEventListener("click", cancelButton);
 
             localStorageHandlerInstance.storeUserInfo(userInfo);
+            buildSidebarInstance.updateSidebar(userInfo);
         }
         
     }

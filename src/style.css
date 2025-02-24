@@ -228,6 +228,12 @@ header {
     grid-template-rows: 50px 1fr minmax(400px, 1.5fr) 50px;
 }
 
+.formHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .formContent {
     display: grid;
     grid-template-columns: 1fr;
