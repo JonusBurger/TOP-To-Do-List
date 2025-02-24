@@ -33,5 +33,10 @@ export default function addFormElements(userInfo, project = undefined) {
         btnElement.addEventListener("click", () => buildFormElementProjectInstance.displayForm());
     }
 
-    return { attachAddToDoListener, addToDoEditEventLister, attachaddProjectEventListener }
+    function attacheditProjectEventListener() {
+        const btnElement = document.getElementById("btnEditProject");
+        btnElement.addEventListener("click", () => buildFormElementProjectInstance.displayForm(project));
+    }
+
+    return { attachAddToDoListener, addToDoEditEventLister, attachaddProjectEventListener, attacheditProjectEventListener }
 }

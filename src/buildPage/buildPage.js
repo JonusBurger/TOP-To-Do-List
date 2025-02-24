@@ -8,14 +8,30 @@ export default function buildPage() {
     // buildPage
 
     // get mainArea
-    const mainArea = document.getElementById("contentArea");
+    const mainArea = document.getElementById("mainArea");
     // clear Area
     function clearArea() {
-        mainArea.replaceChildren();
+        const contentArea = document.getElementById("contentArea");
+        mainArea.removeChild(contentArea);
+
+        const newContentArea = document.createElement("div");
+        newContentArea.classList.add("contentArea");
+        newContentArea.id = "contentArea";
+
+        mainArea.appendChild(newContentArea);
+    }
+
+    // Create headerDiv
+    function createHeaderDiv(mainAreaInput) {
+        const mainAreaHeader = document.querySelector(".MainAreaHeader");
+        mainAreaHeader.replaceChildren();
+        mainAreaHeader.appendChild(mainAreaInput);
     }
 
     // create MainHeader
     function createMainHeader(title) {
+        const contentArea = document.getElementById("contentArea");
+
         const mainHeader = document.createElement("div");
         const titleElement = document.createElement("div");
         titleElement.innerText = title;
@@ -27,20 +43,24 @@ export default function buildPage() {
         btnElement.id = "addToDoBtn";
         mainHeader.appendChild(btnElement);
         mainHeader.classList.add("mainHeader")
-        mainArea.appendChild(mainHeader);
+        contentArea.appendChild(mainHeader);
 
     }
 
     // create Header
     function createDateHeader(date) {
+        const contentArea = document.getElementById("contentArea");
+
         const dateHeader = document.createElement("div");
         dateHeader.classList.add("datumHeader");
         dateHeader.innerText = dateHandlerInstance.formatDate(date);
-        mainArea.appendChild(dateHeader);    
+        contentArea.appendChild(dateHeader);    
     }
 
     // append ToDo
     function appendToDo(toDo, isOverDue = false) {
+        const contentArea = document.getElementById("contentArea");
+
         const lineElement = document.createElement("div");
         const toDoTitle = document.createElement("div");
         const toDoContent = document.createElement("div");
@@ -65,7 +85,7 @@ export default function buildPage() {
         lineElement.appendChild(btnDone);
         lineElement.classList.add("lineElement");
         lineElement.id = toDo.id;
-        mainArea.appendChild(lineElement);
+        contentArea.appendChild(lineElement);
     }
 
     function createDateSortedToDos(toDos) {
@@ -88,6 +108,6 @@ export default function buildPage() {
     }
 
     
-    return { clearArea, createMainHeader, createDateHeader, appendToDo, createDateSortedToDos, highlightElement }
+    return { clearArea, createHeaderDiv, createMainHeader, createDateHeader, appendToDo, createDateSortedToDos, highlightElement }
 }
 

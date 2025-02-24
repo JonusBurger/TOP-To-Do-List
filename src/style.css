@@ -234,6 +234,14 @@ header {
     align-items: center;
 }
 
+.projectHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
 .formContent {
     display: grid;
     grid-template-columns: 1fr;

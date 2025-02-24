@@ -45,10 +45,6 @@ export default function buildFormElement(userInfo, project = undefined) {
             createButton.style.display="none";
 
         } else {
-               // If new-ToDo, Decide if project was passed
-               if (project) {
-                activeProjectId = project.id;
-            }
             editButton.style.display="none";
             createButton.style.display="flex";
             createButton.addEventListener("click", saveButton);
@@ -56,6 +52,10 @@ export default function buildFormElement(userInfo, project = undefined) {
 
         }
 
+        // Decide if project was passed
+        if (project) {
+            activeProjectId = project.id;
+        }
         // Fill Projectbar with projects
         setProjectInput(userInfo);
         // Build Note Layout
@@ -246,6 +246,14 @@ export default function buildFormElement(userInfo, project = undefined) {
             toDo.setTitle = toDoTitle.value;
             if (toDoDueDate.value) {
                 toDo.setDate = toDoDueDate.value;
+            }
+
+            console.log(toDoProject.options[toDoProject.selectedIndex].value);
+            const selectedProjectId = toDoProject.options[toDoProject.selectedIndex].value;
+
+            if (selectedProjectId != "default" && selectedProjectId != project.id) {
+                project.removeToDo(toDo.id);
+                userInfo.addToDoToProject(toDo, selectedProjectId);
             }
             
             toDo.setDescription = toDoDescription.value;
