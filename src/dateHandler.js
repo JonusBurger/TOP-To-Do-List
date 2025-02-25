@@ -25,6 +25,12 @@ export default function dateHandler() {
 
     // compareDates
     function compareDates(date1, date2) {
+        if (!date1) {
+            return 1
+        }
+        if(!date2) {
+            return -1
+        }
         return compareAsc(new Date(date1), new Date(date2))
     }
 

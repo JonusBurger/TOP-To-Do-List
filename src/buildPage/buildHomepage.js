@@ -8,17 +8,21 @@ export default function HomePage(userInfo) {
 
     const addFormElementsInstance = addFormElements(userInfo)
     buildPageInstance.clearArea();
-    buildPageInstance.createMainHeader("Overdue To-Dos", userInfo);
-    initilizeHeader();
-
-    
-   
 
     const overDueToDos = userInfo.getAllOverDueToDos();
+
+    if (overDueToDos.length > 0) {
+        buildPageInstance.createMainHeader("Overdue To-Dos");
+    } else {
+        buildPageInstance.createMainHeader("No Date", true);
+    }
+    
+    initilizeHeader();
 
     for (let toDo of overDueToDos) {
         buildPageInstance.appendToDo(toDo, true);
     }
+
 
     const notOverDueToDos = userInfo.getAllToDosNotOverdue();
 
@@ -27,6 +31,7 @@ export default function HomePage(userInfo) {
     buildPageInstance.highlightElement("Homepage");
 
     addFormElementsInstance.attachAddToDoListener();
+    addFormElementsInstance.addToDoEditEventLister();
 
     function initilizeHeader() {
         const headerDiv = document.createElement("div");

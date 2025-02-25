@@ -7,6 +7,7 @@ const dateHandlerInstance = dateHandler(); // Call the function to get the objec
 export default function buildPage() {
     // buildPage
 
+    let defaultDisplayed = false;
     // get mainArea
     const mainArea = document.getElementById("mainArea");
     // clear Area
@@ -29,7 +30,7 @@ export default function buildPage() {
     }
 
     // create MainHeader
-    function createMainHeader(title) {
+    function createMainHeader(title, noOverdue = false) {
         const contentArea = document.getElementById("contentArea");
 
         const mainHeader = document.createElement("div");
@@ -45,6 +46,11 @@ export default function buildPage() {
         mainHeader.classList.add("mainHeader")
         contentArea.appendChild(mainHeader);
 
+        // if no overdues available, set mainHeader to default
+        if(noOverdue) {
+            defaultDisplayed = true;
+        }
+
     }
 
     // create Header
@@ -55,6 +61,15 @@ export default function buildPage() {
         dateHeader.classList.add("datumHeader");
         dateHeader.innerText = dateHandlerInstance.formatDate(date);
         contentArea.appendChild(dateHeader);    
+    }
+
+    function createDefaultHeader() {
+        const contentArea = document.getElementById("contentArea");
+
+        const dateHeader = document.createElement("div");
+        dateHeader.classList.add("datumHeader");
+        dateHeader.innerText = "No date";
+        contentArea.appendChild(dateHeader);            
     }
 
     // append ToDo
@@ -91,9 +106,12 @@ export default function buildPage() {
     function createDateSortedToDos(toDos) {
         let date;
         for (let toDo of toDos) {
-            if (dateHandlerInstance.compareDates(date, toDo.getDate) != 0) {
+            if (dateHandlerInstance.compareDates(date, toDo.getDate) != 0 && toDo.getDate) {
                 createDateHeader(toDo.getDate);
                 date = toDo.getDate;
+            } if (!date && !toDo.getDate && !defaultDisplayed) {
+                createDefaultHeader(); 
+                defaultDisplayed = true;
             }
             appendToDo(toDo);
         }

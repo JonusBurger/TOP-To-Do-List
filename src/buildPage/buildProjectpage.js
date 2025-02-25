@@ -12,17 +12,20 @@ export default function ProjectPage(project, userInfo) {
 
     const overDueToDos = project.getOverDueToDos();
 
-    if (overDueToDos) {
+    if (overDueToDos.length > 0) {
         buildPageInstance.createMainHeader("Overdue To-Dos");
         for (let toDo of overDueToDos) {
             buildPageInstance.appendToDo(toDo, true);
         }
+    } else {
+        buildPageInstance.createMainHeader("No Date", true);
     }
     const notOverDueToDos = project.getAllToDosNotOverdue();
 
     buildPageInstance.createDateSortedToDos(notOverDueToDos);
 
     addFormElementsInstance.attachAddToDoListener();
+    addFormElementsInstance.addToDoEditEventLister();
     addFormElementsInstance.attacheditProjectEventListener();
 
     function initilizeHeader() {
