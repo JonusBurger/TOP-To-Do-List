@@ -10,6 +10,10 @@ export default function buildPage() {
     let defaultDisplayed = false;
     // get mainArea
     const mainArea = document.getElementById("mainArea");
+
+    // set Date to header when initilized
+    setDate();
+
     // clear Area
     function clearArea() {
         const contentArea = document.getElementById("contentArea");
@@ -125,6 +129,14 @@ export default function buildPage() {
 
         const elementToHighlight = document.getElementById(elementId);
         elementToHighlight.classList.add("active");
+    }
+
+    function setDate() {
+        const dateHeaderDiv = document.getElementById("date");
+        let today = dateHandlerInstance.getToday();
+        today = dateHandlerInstance.formatDate(today);
+
+        dateHeaderDiv.innerText = today;
     }
 
     
