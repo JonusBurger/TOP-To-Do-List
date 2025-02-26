@@ -31,6 +31,8 @@ export default function buildPage() {
 
     // create MainHeader
     function createMainHeader(title, noOverdue = false) {
+        // Reset Data
+        defaultDisplayed = false;
         const contentArea = document.getElementById("contentArea");
 
         const mainHeader = document.createElement("div");
