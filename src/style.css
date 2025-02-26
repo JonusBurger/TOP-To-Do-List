@@ -394,10 +394,41 @@ footer {
   outline: none;
 }
 
-.button:hover {
+.button:hover, .btnDone:hover {
   background-position: -20px -20px;
 }
 
 .button:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 }
+.btnDone:focus:not(:active) {
+    box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+  }
+
+.btnDone {
+    align-items: center;
+    appearance: none;
+    background-color: white;
+    background-size: 20px 20px;
+    border-radius: 50px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+  }

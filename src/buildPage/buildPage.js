@@ -101,6 +101,7 @@ export default function buildPage() {
 
         const btnDone = document.createElement("button");
         btnDone.classList.add("btnDone");
+        btnDone.onclick = () => updateDoneState(toDo, btnDone);
         
         lineElement.appendChild(toDoContent);
         lineElement.appendChild(btnDone);
@@ -137,6 +138,15 @@ export default function buildPage() {
         today = dateHandlerInstance.formatDate(today);
 
         dateHeaderDiv.innerText = today;
+    }
+
+    function updateDoneState(toDo, btnDone) {
+        toDo.changeDoneState();
+        if (toDo.done) {
+            btnDone.innerText = "X";
+        } else {
+            btnDone.innerText = "";
+        }
     }
 
     

@@ -6,7 +6,6 @@ export default function addFormElements(userInfo, project = undefined) {
     // Handle ToDo
     const createButton = document.getElementById("createBtn");
 
-
     const buildFormElementInstance = buildFormElementToDo(userInfo, project);
 
     function attachAddToDoListener() {
@@ -22,7 +21,7 @@ export default function addFormElements(userInfo, project = undefined) {
                 const parentElement = e.target.parentNode;
                 const toDo = userInfo.findToDo(parentElement.id);
                 buildFormElementInstance.displayForm(toDo);
-            }
+            }            
         });
     }
 
