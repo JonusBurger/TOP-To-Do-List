@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script defer src="main.js"></script></head>
+<body>
+
+    <header class="rowGrid">
+        <div class="icon"></div>
+        <div>
+            <h2>To-Do List</h2>
+        </div>
+        <div class="date" id="date">Datum</div>
+    </header>
+    <div class="formContainer" id="formContainer">
+        <div class="formShadow"></div>
+        <div class="formMain">
+            <div class="formHeader headerText">Create Task</div>
+            <form action="" class="formContent" name="formMain" id="formMain">
+                <div class="formColumns">
+                    <div class="formTitle">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" id="toDoTitle" required>
+                    </div>
+                    <div class="formDate">
+                        <label for="date">Due Date</label>
+                        <input type="date" id="toDoDueDate">
+                    </div>
+                </div>
+                <div class="formRow" id="formDescription">
+                    <label for="description" class="alignTop">Description:</label>
+                    <textarea name="description" class="small" rows="8" cols="30" maxlength="280" required id="toDoDescription"></textarea>
+                </div>
+                <div class="formRow formBox">
+                    <label for="project">Project:</label>
+                    <select name="project" id="toDoProject">
+                        <option value="none">none</option>
+                    </select>
+                    <label for="priority">Priority:</label>
+                    <select name="priority" id="toDoPriority" required>
+                        <option value="low">low</option>
+                        <option value="medium">medium</option>
+                        <option value="high">high</option>
+                    </select>
+                </div>
+            </form>
+            <div class="formRow formnoteContainer">
+                <label for="notes" class="noteHeader">Notes</label>
+                <div class="formNotes">
+                    <form action="" class="noteBox" name="noteBox" id="noteBox">
+                        <div class="formTitle">
+                            <label for="title"></label>
+                            <input type="text" name="title" id="titleNote" placeholder="Title" size="14" required>
+                        </div>
+                        <div class="noteDescription">
+                            <textarea name="descriptionNote" id="descriptionNote" rows="5" cols="15" maxlength="140" class="small" required></textarea>
+                        </div>
+                        <div class="noteButton">
+                            <input type="submit" form="noteBox" value="Add" id="addNoteBtn" class="button">
+                        </div>
+                    </form>
+                    <div class="addNoteBox">
+                        <div class="addIcon">
+                            <img src="dd5e97a4bdea520949eb.png" alt="Icon for Adding Note">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="formRow formButtons">
+                <input type="submit" form="formMain" value="Cancel" id="cancelBtn" class="button" formnovalidate>
+                <input type="submit" form="formMain" value="Create" id="createBtn" class="button">
+                <input type="submit" form="formMain" value="Edit" id="editBtn" class="button">
+            </div>
+        </div>
+
+    </div>
+    <div class="formContainer" id="formContainerProject">
+        <div class="formShadow"></div>
+        <div class="formMainProject">
+            <div class="formHeader headerText">Create Project</div>
+            <form action="" class="formContentProject" name="formMainProject" id="formMainProject">
+                <div class="formColumns">
+                    <div class="formTitle">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" id="projectTitle" required>
+                    </div>
+                    <div class="formDate">
+                        <label for="date">Due Date</label>
+                        <input type="date" id="projectDueDate">
+                    </div>
+                </div>
+            </form>
+            <div class="formRow formButtons">
+                <input type="submit" form="formMainProject" value="Cancel" id="cancelBtnProject" class="button" formnovalidate>
+                <input type="submit" form="formMainProject" value="Create" id="createBtnProject" class="button">
+                <input type="submit" form="formMainProject" value="Edit" id="editBtnProject" class="button">
+            </div>
+        </div>
+    </div>
+    <div class="mainGrid">
+        <div class="columnGrid" id="sidebar">
+            <div class="sidebarItem" id="Homepage">Homepage</div>
+            <div class="line"></div>
+            <div class="projects" id="projects"></div>
+            <div class="line"></div>
+            <div class="sidebarItem" id="Archiv">Archiv</div>
+            <div class="addProjectContainer">
+                <div class="sidebarItem"><button class="button" id="btnAddProject">Add Project</button></div>
+            </div>
+        </div>
+        <div id="mainArea">
+            <div class="MainAreaHeader">Hier steht ein Motivationsspruch</div>
+            <div class="contentArea" id="contentArea">
+                <div class="firstLine">
+                    <div class="datumHeader">Overdue To-Dos</div>
+                    <button class="button" id="btnAddToDo">Add to-Do</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="copyright">Copyright</footer>
+</body>
+</html>
