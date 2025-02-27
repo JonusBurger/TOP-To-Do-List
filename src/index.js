@@ -10,20 +10,24 @@ import buildSidebar from "./buildPage/buildSidebar";
 import addFormElements from "./formHandler/addFormElements";
 import localStorageHandler from "./localStorageHandler";
 
-const dateHandlerInstance = dateHandler(); // Call the function to get the object
+(function initPage() {
+    // setup Instances
+    const buildSidebarInstance = buildSidebar(); 
+    const localStorageHandlerInstance = localStorageHandler();
+    const userData = localStorageHandlerInstance.checkForStorage();
+    const addFormElementsInstance = addFormElements(userData);
+    
+    // LandingPage = HomePage
+    buildHomePage(userData);
 
-const buildSidebarInstance = buildSidebar();
+    // Build Sidebar
+    buildSidebarInstance.initializeSidebar(userData);
+    addFormElementsInstance.attachaddProjectEventListener()
+})();
 
-const localStorageHandlerInstance = localStorageHandler()
 
-const userData = localStorageHandlerInstance.checkForStorage();
 
-const addFormElementsInstance = addFormElements(userData)
-buildHomePage(userData);
-addFormElementsInstance.addToDoEditEventLister();
 
-buildSidebarInstance.initializeSidebar(userData);
-addFormElementsInstance.attachaddProjectEventListener()
 
 
 

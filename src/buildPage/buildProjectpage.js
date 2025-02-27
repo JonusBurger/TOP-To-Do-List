@@ -6,7 +6,7 @@ const buildPageInstance = buildPage();
 export default function ProjectPage(project, userInfo) {
     
     const addFormElementsInstance = addFormElements(userInfo, project)
-    buildPageInstance.clearArea();
+    buildPageInstance.clearArea(userInfo);
     initilizeHeader();
     buildPageInstance.highlightElement(project.id);
 

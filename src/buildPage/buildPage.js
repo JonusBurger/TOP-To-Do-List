@@ -1,7 +1,9 @@
 import dateHandler from "../dateHandler"
 import buildFormElement from "../formHandler/buildFormToDo"
+import localStorageHandler from "../localStorageHandler";
 
 const dateHandlerInstance = dateHandler(); // Call the function to get the object
+const localStorageHandlerInstance = localStorageHandler();
 
 
 export default function buildPage() {
@@ -15,7 +17,8 @@ export default function buildPage() {
     setDate();
 
     // clear Area
-    function clearArea() {
+    function clearArea(userInfo) {
+        localStorageHandlerInstance.storeUserInfo(userInfo);
         const contentArea = document.getElementById("contentArea");
         mainArea.removeChild(contentArea);
 
@@ -102,6 +105,9 @@ export default function buildPage() {
         const btnDone = document.createElement("button");
         btnDone.classList.add("btnDone");
         btnDone.onclick = () => updateDoneState(toDo, btnDone);
+        if (toDo.done) {
+            btnDone.innerText = "X";
+        }
         
         lineElement.appendChild(toDoContent);
         lineElement.appendChild(btnDone);

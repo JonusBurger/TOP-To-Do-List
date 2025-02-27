@@ -7,7 +7,7 @@ export default function HomePage(userInfo) {
 
 
     const addFormElementsInstance = addFormElements(userInfo)
-    buildPageInstance.clearArea();
+    buildPageInstance.clearArea(userInfo);
 
     const overDueToDos = userInfo.getAllOverDueToDos();
 
